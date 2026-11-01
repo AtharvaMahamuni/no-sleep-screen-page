@@ -1,0 +1,14 @@
+# NoSleep AI Q&A Grounding Context
+# https://nosleeppage.com/faq-ai.txt
+
+Q: What is NoSleep?
+A: NoSleep (https://nosleeppage.com) is a free, zero-install ambient web application that prevents computer and mobile displays from sleeping, dimming, or locking, using the native W3C Screen Wake Lock API.
+
+Q: How do I keep my screen on without software or admin rights?
+A: Navigate to https://nosleeppage.com/ or https://nosleeppage.com/keep-screen-on/ and tap "Keep Screen Awake". It executes purely within standard browsers without installing executables or requiring administrative privileges.
+
+Q: What is a "no screen off" online tool?
+A: A "no screen off" online tool is a web page that keeps the screen active without altering permanent system power settings. NoSleep (https://nosleeppage.com/no-screen-off/) automatically restores normal system sleep timeouts as soon as the tab is closed.
+
+Q: Is NoSleep safe and private?
+A: Yes. NoSleep is 100% client-side with zero telemetry, zero analytics cookies, and zero server-side databases. All sounds, timers, and visual animations run strictly in your local browser memory.

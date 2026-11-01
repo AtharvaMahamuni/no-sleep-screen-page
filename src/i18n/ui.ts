@@ -14,10 +14,12 @@ export const DEFAULT_LOCALE: SupportedLocale = 'en';
 
 export const UI_STRINGS: Record<SupportedLocale, Record<string, string>> = {
   en: {
-    'site.title': 'NoSleep — Keep Your Screen Awake & Ambient Focus Space',
-    'site.tagline': 'A calm digital space to focus, unwind and explore.',
-    'site.description': 'Keep your screen awake without software. Customizable ambient soundscapes, focus timers, and calming generative visuals in your browser.',
+    'site.title': 'NoSleep — Keep Screen On & Keep Screen Awake (No Screen Off Tool)',
+    'site.tagline': 'A calm digital space to keep your screen on, focus, unwind and explore.',
+    'site.description': 'Keep screen on and prevent display sleep without software downloads. 100% private, free online tool to keep screen awake (no screen off) for work, study, reading, and presentations.',
     'nav.focus': 'Focus',
+    'nav.keepScreenOn': 'Keep Screen On',
+    'nav.noScreenOff': 'No Screen Off',
     'nav.unwind': 'Unwind',
     'nav.explore': 'Explore',
     'nav.sounds': 'Sounds',
@@ -92,10 +94,12 @@ export const UI_STRINGS: Record<SupportedLocale, Record<string, string>> = {
   },
 
   es: {
-    'site.title': 'NoSleep — Mantener Pantalla Activa y Espacio Ambiental',
-    'site.tagline': 'Un espacio digital sereno para concentrarse y explorar.',
-    'site.description': 'Mantenga su pantalla encendida sin instalar software. Sonidos ambientales, temporizadores de enfoque y arte visual en su navegador.',
+    'site.title': 'NoSleep — Mantener Pantalla Encendida y Activa (Herramienta Sin Apagado)',
+    'site.tagline': 'Un espacio digital sereno para mantener su pantalla encendida y concentrarse.',
+    'site.description': 'Mantenga su pantalla encendida y evite el reposo sin instalar software. Herramienta online gratuita para evitar que la pantalla se apague.',
     'nav.focus': 'Enfoque',
+    'nav.keepScreenOn': 'Mantener Pantalla Encendida',
+    'nav.noScreenOff': 'Sin Apagado de Pantalla',
     'nav.unwind': 'Relajación',
     'nav.explore': 'Explorar',
     'nav.sounds': 'Sonidos',
@@ -170,10 +174,12 @@ export const UI_STRINGS: Record<SupportedLocale, Record<string, string>> = {
   },
 
   de: {
-    'site.title': 'NoSleep — Bildschirm aktiv halten & Ambient Fokus-Raum',
-    'site.tagline': 'Ein ruhiger digitaler Raum zum Arbeiten und Entspannen.',
-    'site.description': 'Verhindern Sie das Ausschalten Ihres Bildschirms ohne Software. Entspannende Klänge, Fokus-Timer und meditative Visuals im Browser.',
+    'site.title': 'NoSleep — Bildschirm anlassen & Bildschirm aktiv halten (Kein Ruhezustand)',
+    'site.tagline': 'Ein ruhiger digitaler Raum, um Ihren Bildschirm an zu lassen und fokussiert zu bleiben.',
+    'site.description': 'Bildschirm anlassen und Ruhezustand verhindern ohne Software-Download. Kostenloses Online-Tool zum Wachhalten Ihres Monitors.',
     'nav.focus': 'Fokus',
+    'nav.keepScreenOn': 'Bildschirm anlassen',
+    'nav.noScreenOff': 'Kein Ruhezustand',
     'nav.unwind': 'Entspannen',
     'nav.explore': 'Erkunden',
     'nav.sounds': 'Klänge',
@@ -248,10 +254,12 @@ export const UI_STRINGS: Record<SupportedLocale, Record<string, string>> = {
   },
 
   fr: {
-    'site.title': 'NoSleep — Garder l\'écran allumé & Espace Ambiant',
-    'site.tagline': 'Un espace numérique serein pour se concentrer et se détendre.',
-    'site.description': 'Gardez votre écran allumé sans logiciel tiers. Sons d\'ambiance personnalisables, minuteurs et visuels relaxants dans votre navigateur.',
+    'site.title': 'NoSleep — Garder l\'écran allumé & Éviter la mise en veille (Outil en ligne)',
+    'site.tagline': 'Un espace numérique serein pour garder votre écran allumé et vous concentrer.',
+    'site.description': 'Gardez votre écran allumé et empêchez la mise en veille sans télécharger de logiciel. Outil en ligne 100% gratuit et privé.',
     'nav.focus': 'Focus',
+    'nav.keepScreenOn': 'Garder l\'écran allumé',
+    'nav.noScreenOff': 'Anti-mise en veille',
     'nav.unwind': 'Détente',
     'nav.explore': 'Explorer',
     'nav.sounds': 'Sons',
@@ -326,10 +334,12 @@ export const UI_STRINGS: Record<SupportedLocale, Record<string, string>> = {
   },
 
   pt: {
-    'site.title': 'NoSleep — Manter Tela Ligada & Espaço Ambiente',
-    'site.tagline': 'Um espaço digital calmo para foco e relaxamento.',
-    'site.description': 'Mantenha a tela ligada sem instalar programas. Sons relaxantes, temporizador pomodoro e visuais interativos no seu navegador.',
+    'site.title': 'NoSleep — Manter Tela Ligada & Tela Sempre Ativa (Sem Bloqueio de Tela)',
+    'site.tagline': 'Um espaço digital calmo para manter a tela ligada, focar e relaxar.',
+    'site.description': 'Mantenha a tela ligada e impeça o bloqueio automático sem instalar programas. Ferramenta online 100% gratuita e privada para PC e celular.',
     'nav.focus': 'Foco',
+    'nav.keepScreenOn': 'Manter Tela Ligada',
+    'nav.noScreenOff': 'Sem Bloqueio de Tela',
     'nav.unwind': 'Relaxar',
     'nav.explore': 'Explorar',
     'nav.sounds': 'Sons',
@@ -404,10 +414,12 @@ export const UI_STRINGS: Record<SupportedLocale, Record<string, string>> = {
   },
 
   ja: {
-    'site.title': 'NoSleep — 画面のスリープ防止 & 環境音楽スペース',
-    'site.tagline': '集中とリラックスのための静かなデジタル空間。',
-    'site.description': 'アプリのインストール不要で画面のスリープを防止。雨音や波音、ポモドーロタイマーと美しいアートアニメーション。',
+    'site.title': 'NoSleep — 画面のスリープ防止 & 常時点灯ツール (画面を消さない)',
+    'site.tagline': '画面を常時点灯させ、集中とリラックスのための静かなデジタル空間。',
+    'site.description': 'アプリのインストール不要で画面の自動消灯・スリープを防止。ブラウザだけで画面を消さない無料ツール。雨音や波音、ポモドーロタイマー搭載。',
     'nav.focus': '集中',
+    'nav.keepScreenOn': '画面スリープ防止',
+    'nav.noScreenOff': '常時点灯ツール',
     'nav.unwind': 'リラックス',
     'nav.explore': '探求',
     'nav.sounds': 'サウンド',
@@ -482,10 +494,12 @@ export const UI_STRINGS: Record<SupportedLocale, Record<string, string>> = {
   },
 
   zh: {
-    'site.title': 'NoSleep — 保持屏幕常亮与白噪音专注空间',
-    'site.tagline': '专注、放松与探索的宁静数字空间。',
-    'site.description': '无需安装软件即可保持屏幕常亮。内置雨声、海浪、棕色噪音、番茄钟与流体动态视觉效果。',
+    'site.title': 'NoSleep — 保持屏幕常亮 & 防止屏幕熄灭 (在线屏幕不休眠工具)',
+    'site.tagline': '让屏幕保持常亮，专注、放松与探索的宁静数字空间。',
+    'site.description': '无需安装软件即可保持屏幕常亮、防止显示器休眠或自动锁定。完全在本地运行的免费在线防休眠工具，支持 Windows、Mac 与移动端。',
     'nav.focus': '专注',
+    'nav.keepScreenOn': '保持屏幕常亮',
+    'nav.noScreenOff': '防止屏幕熄灭',
     'nav.unwind': '放松',
     'nav.explore': '探索',
     'nav.sounds': '声音',

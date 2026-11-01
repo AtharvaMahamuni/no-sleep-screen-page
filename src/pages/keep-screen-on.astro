@@ -1,0 +1,278 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import AmbientCanvas from '../components/AmbientCanvas.astro';
+import HeroWakeControl from '../components/HeroWakeControl.astro';
+import ControlsBar from '../components/ControlsBar.astro';
+import SoundMixerModal from '../components/SoundMixerModal.astro';
+import TimerModal from '../components/TimerModal.astro';
+import Footer from '../components/Footer.astro';
+import JsonLd from '../components/JsonLd.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebApplication',
+      '@id': 'https://nosleeppage.com/keep-screen-on/#webapp',
+      'name': 'Keep Screen On Online Tool — NoSleep',
+      'url': 'https://nosleeppage.com/keep-screen-on/',
+      'description': 'Keep your screen on and prevent display sleep or lockouts without installing software. Works on Windows, Mac, iPad, and Android.',
+      'applicationCategory': 'UtilitiesApplication',
+      'operatingSystem': 'All',
+      'browserRequirements': 'Requires JavaScript and Screen Wake Lock API support',
+      'offers': {
+        '@type': 'Offer',
+        'price': '0',
+        'priceCurrency': 'USD',
+      },
+      'author': {
+        '@type': 'Person',
+        'name': 'Atharva Mahamuni',
+        'url': 'https://twitter.com/athmatwt',
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': 'https://nosleeppage.com/keep-screen-on/#faq',
+      'mainEntity': [
+        {
+          '@type': 'Question',
+          'name': 'How do I keep my screen on without installing software?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Open NoSleep (https://nosleeppage.com/keep-screen-on/) in your browser and click "Keep Screen Awake". Your browser communicates with the OS via the W3C Screen Wake Lock API, holding the display active without any executable files or administrator privileges.',
+          },
+        },
+        {
+          '@type': 'Question',
+          'name': 'Can I keep my screen on for a company laptop without admin rights?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Yes! Many corporate IT departments restrict native apps like Caffeine or Amphetamine. NoSleep runs 100% inside your standard web browser (Chrome, Edge, Safari, Firefox), which means no installations or admin permissions are needed.',
+          },
+        },
+        {
+          '@type': 'Question',
+          'name': 'Does this work on Mac, Windows, Chromebook, iPad, and Android?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Yes. All major modern desktop and mobile browsers support the W3C Screen Wake Lock API. As long as this browser tab remains open, your screen will not dim or lock.',
+          },
+        },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Keep Screen On Online — Prevent Display Sleep Without Software Downloads"
+  description="Keep your screen on and prevent display sleep or lockouts without installing software. Works on Windows, Mac, Chromebook, iPad, and Android with zero admin rights."
+  canonicalPath="/keep-screen-on/"
+>
+  <JsonLd slot="head" schema={jsonLd} />
+
+  <!-- Ambient Application Viewport -->
+  <main class="ambient-app-container">
+    <Header locale="en" />
+    <AmbientCanvas />
+    <HeroWakeControl locale="en" />
+    <ControlsBar locale="en" />
+    <SoundMixerModal locale="en" />
+    <TimerModal locale="en" />
+  </main>
+
+  <!-- Educational & Search-Intent Content -->
+  <article class="content-container">
+    <h1>Keep Screen On Online — Zero Software Downloads</h1>
+    <p class="lead">
+      Whether you are monitoring a real-time analytics dashboard, following a recipe in the kitchen, reading technical
+      documentation, or presenting slides, unexpected screen timeouts interrupt your concentration. NoSleep keeps your
+      screen on continuously without installing third-party utilities.
+    </p>
+
+    <section class="info-block">
+      <h2>Why Does Your Screen Turn Off Automatically?</h2>
+      <p>
+        Operating systems such as Windows 11, macOS Sequoia, iOS, and Android enforce automatic display sleep timeouts
+        (often set to 2, 5, or 10 minutes) to conserve battery power and protect hardware. On corporate managed laptops,
+        IT administrators frequently lock these timeout settings via Group Policy (GPO) or MDM profiles, making it impossible
+        to change them in system preferences.
+      </p>
+      <p>
+        In the past, users resorted to installing native utilities like Caffeine or Amphetamine, or playing looping 10-hour
+        YouTube black screen videos. NoSleep offers a clean, zero-install, privacy-first alternative.
+      </p>
+    </section>
+
+    <section class="info-block">
+      <h2>How Browser Screen Wake Lock Keeps Your Screen On</h2>
+      <p>
+        NoSleep utilizes the modern <strong>W3C Screen Wake Lock API</strong>. When you tap <em>Keep Screen Awake</em>,
+        your browser requests a high-level system lock from the operating system power manager. The OS recognizes that
+        the active browser tab requires continuous visibility, keeping your display fully illuminated without disabling
+        your system security or modifying system registry keys.
+      </p>
+    </section>
+
+    <section class="info-block">
+      <h2>Comparing Screen Keep-On Solutions</h2>
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Solution</th>
+              <th>Admin Rights</th>
+              <th>Data Usage</th>
+              <th>Battery Impact</th>
+              <th>Ad Interruptions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>NoSleep Online</strong></td>
+              <td>Zero needed</td>
+              <td>0 MB (Offline PWA)</td>
+              <td>Minimal (Canvas 2D)</td>
+              <td>None (100% Free)</td>
+            </tr>
+            <tr>
+              <td>10-Hour YouTube Video</td>
+              <td>Not needed</td>
+              <td>500MB – 2GB stream</td>
+              <td>High (Video decoding)</td>
+              <td>Frequent loud ads</td>
+            </tr>
+            <tr>
+              <td>Native Utilities (Caffeine)</td>
+              <td>Often blocked by IT</td>
+              <td>Installer download</td>
+              <td>Varies</td>
+              <td>May contain telemetry</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="info-block">
+      <h2>Device Guides: Keeping Screen On Without Changing Settings</h2>
+      <div class="device-grid">
+        <div class="device-card glass-surface">
+          <h3>Windows 10 & 11</h3>
+          <p>
+            Simply open NoSleep in Google Chrome, Microsoft Edge, or Firefox and activate the toggle. No registry tweaks,
+            PowerShell scripts, or IT admin overrides required.
+          </p>
+        </div>
+        <div class="device-card glass-surface">
+          <h3>macOS (MacBook, iMac, Mac mini)</h3>
+          <p>
+            Works natively in Safari 16.4+, Chrome, and Edge on Apple Silicon (M1/M2/M3/M4) and Intel Macs without Terminal
+            <code>caffeinate</code> commands.
+          </p>
+        </div>
+        <div class="device-card glass-surface">
+          <h3>iPad, iPhone & Android Tablets</h3>
+          <p>
+            Perfect for kitchen recipe reading, music sheet viewing, or bedside clocks. Keeps the tablet display illuminated
+            indefinitely while the tab remains frontmost.
+          </p>
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <Footer locale="en" />
+
+  <script src="../scripts/app.ts"></script>
+</BaseLayout>
+
+<style>
+  .content-container {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .lead {
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: var(--color-body);
+  }
+
+  .info-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .info-block h2 {
+    font-size: 1.4rem;
+    color: var(--color-ink);
+  }
+
+  .info-block p {
+    line-height: 1.65;
+    color: var(--color-body);
+  }
+
+  .comparison-table-wrapper {
+    overflow-x: auto;
+    margin-top: var(--space-2);
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-hairline);
+  }
+
+  .comparison-table th {
+    background: var(--color-canvas-soft);
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .comparison-table tr:hover td {
+    background: var(--color-primary-soft);
+  }
+
+  .device-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-2);
+  }
+
+  .device-card {
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    border: 1px solid var(--color-hairline);
+  }
+
+  .device-card h3 {
+    font-size: 1.05rem;
+    color: var(--color-ink);
+  }
+
+  .device-card p {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--color-body);
+  }
+</style>

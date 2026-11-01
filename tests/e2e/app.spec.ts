@@ -52,6 +52,32 @@ test.describe('NoSleep Core Application', () => {
     await expect(timerModal).not.toHaveClass(/open/);
   });
 
+  test('zen mode keyboard toggle hides overlays on idle', async ({ page }) => {
+    await page.goto('/');
+    const container = page.locator('.ambient-app-container');
+    await expect(container).not.toHaveClass(/ambient-idle-hidden/);
+
+    // Press Z to trigger Zen mode
+    await page.keyboard.press('z');
+    await expect(container).toHaveClass(/ambient-idle-hidden/);
+
+    // Press Z again to restore overlays
+    await page.keyboard.press('z');
+    await expect(container).not.toHaveClass(/ambient-idle-hidden/);
+  });
+
+  test('dedicated high-intent SEO pages load with canonical and wake lock', async ({ page }) => {
+    // Keep Screen On
+    await page.goto('/keep-screen-on/');
+    await expect(page).toHaveTitle(/Keep Screen On/);
+    await expect(page.locator('#hero-wakelock-toggle-btn')).toBeVisible();
+
+    // No Screen Off
+    await page.goto('/no-screen-off/');
+    await expect(page).toHaveTitle(/No Screen Off/);
+    await expect(page.locator('#hero-wakelock-toggle-btn')).toBeVisible();
+  });
+
   test('passes axe-core accessibility audit', async ({ page }) => {
     await page.goto('/');
     const accessibilityScanResults = await new AxeBuilder({ page })

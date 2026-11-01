@@ -15,6 +15,14 @@ const faqs = [
     a: 'NoSleep uses the W3C Screen Wake Lock API supported natively in modern web browsers. When enabled, it informs your operating system that the active browser tab requires the display to remain active, preventing lock screens, dimming, and sleep without needing administrative privileges or native software downloads.'
   },
   {
+    q: 'Can I keep my screen on for a corporate work laptop without administrator rights?',
+    a: 'Yes. Enterprise IT departments often lock down system timeout settings and block executable files like Caffeine or Amphetamine. NoSleep runs 100% inside your standard browser (Chrome, Edge, Safari, Firefox), enabling a safe "no screen off" session with zero admin privileges required.'
+  },
+  {
+    q: 'What is the difference between a "no screen off" browser tool and changing OS settings?',
+    a: 'Changing system display timeouts permanently leaves your computer awake even after you leave your desk, creating security vulnerabilities and battery drain. NoSleep only keeps your display active while this browser tab remains frontmost, automatically restoring your normal system sleep timeout when closed.'
+  },
+  {
     q: 'Does screen wake lock work when I minimize or switch to another application?',
     a: 'Per official browser security and battery protection specifications, the Screen Wake Lock API automatically suspends when a tab is minimized or hidden. However, NoSleep immediately and automatically re-acquires the wake lock as soon as the tab becomes visible again.'
   },

@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import AmbientCanvas from '../components/AmbientCanvas.astro';
+import HeroWakeControl from '../components/HeroWakeControl.astro';
+import ControlsBar from '../components/ControlsBar.astro';
+import SoundMixerModal from '../components/SoundMixerModal.astro';
+import TimerModal from '../components/TimerModal.astro';
+import Footer from '../components/Footer.astro';
+import JsonLd from '../components/JsonLd.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebApplication',
+      '@id': 'https://nosleeppage.com/no-screen-off/#webapp',
+      'name': 'No Screen Off Online Tool — NoSleep',
+      'url': 'https://nosleeppage.com/no-screen-off/',
+      'description': 'Stop your screen from turning off or sleeping automatically. Free browser-based utility with zero installs and 100% client-side privacy.',
+      'applicationCategory': 'UtilitiesApplication',
+      'operatingSystem': 'All',
+      'browserRequirements': 'Requires JavaScript and Screen Wake Lock API support',
+      'offers': {
+        '@type': 'Offer',
+        'price': '0',
+        'priceCurrency': 'USD',
+      },
+      'author': {
+        '@type': 'Person',
+        'name': 'Atharva Mahamuni',
+        'url': 'https://twitter.com/athmatwt',
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': 'https://nosleeppage.com/no-screen-off/#faq',
+      'mainEntity': [
+        {
+          '@type': 'Question',
+          'name': 'How does this stop my screen from turning off?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'NoSleep requests a Screen Wake Lock via your browser. The operating system is notified that active display content is in progress, preventing display dimming, screensavers, and sleep mode.',
+          },
+        },
+        {
+          '@type': 'Question',
+          'name': 'Is there any software to install or account to create?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'No. NoSleep is 100% web-based. It requires zero installs, zero extensions, and zero user sign-ins. Simply open the URL and turn on the wake lock.',
+          },
+        },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="No Screen Off Online — Stop Screen From Turning Off Without Software"
+  description="Stop your screen from turning off automatically. Free browser-based no screen off tool with zero downloads, zero telemetry, and client-side privacy."
+  canonicalPath="/no-screen-off/"
+>
+  <JsonLd slot="head" schema={jsonLd} />
+
+  <!-- Ambient Application Viewport -->
+  <main class="ambient-app-container">
+    <Header locale="en" />
+    <AmbientCanvas />
+    <HeroWakeControl locale="en" />
+    <ControlsBar locale="en" />
+    <SoundMixerModal locale="en" />
+    <TimerModal locale="en" />
+  </main>
+
+  <!-- Educational & Search-Intent Content -->
+  <article class="content-container">
+    <h1>No Screen Off — Stop Your Screen From Turning Off Online</h1>
+    <p class="lead">
+      Searching for a "no screen off" solution to keep your monitor awake during critical work, long builds, reading, or presentations?
+      NoSleep keeps your display alive directly through your browser, without administrative access, command lines, or background software.
+    </p>
+
+    <section class="info-block">
+      <h2>When Do You Need a No Screen Off Tool?</h2>
+      <div class="usecases-grid">
+        <div class="usecase-card glass-surface">
+          <h3>👨‍💻 Developers & Compilations</h3>
+          <p>Prevent your workstation from sleeping while running local unit tests, Docker builds, or compiling large codebases.</p>
+        </div>
+        <div class="usecase-card glass-surface">
+          <h3>📊 Real-Time Operations & NOCs</h3>
+          <p>Keep Grafana, Datadog, CloudWatch dashboards, and support queues visible on secondary wall monitors without touch interaction.</p>
+        </div>
+        <div class="usecase-card glass-surface">
+          <h3>📖 Reading, Recipes & Sheet Music</h3>
+          <p>Avoid touching greasy screens while cooking or losing your spot in technical books, whitepapers, and musical notation.</p>
+        </div>
+        <div class="usecase-card glass-surface">
+          <h3>🎤 Presentations & Public Speaking</h3>
+          <p>Ensure keynote slides and speech reference timers stay illuminated during client conferences and webinars.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-block">
+      <h2>Why Browser Wake Lock is Superior to Video Loops</h2>
+      <p>
+        Many users previously opened 10-hour looping YouTube black screen videos to keep their computer awake. While this technique
+        tricks the operating system, it constantly streams gigabytes of video data, heats up laptops, and drains battery life rapidly
+        due to continuous video codec processing.
+      </p>
+      <p>
+        NoSleep uses standard Web APIs that tell the operating system to hold the screen on directly, using negligible power
+        and zero streaming bandwidth.
+      </p>
+    </section>
+
+    <section class="info-block">
+      <h2>Zero Tracking, 100% Client-Side Privacy</h2>
+      <p>
+        NoSleep operates entirely within your browser client. We do not set tracking cookies, collect personal data, or transmit your
+        browsing habits to remote servers. All ambient audio synthesis, focus timers, and scene settings execute locally on your machine.
+      </p>
+    </section>
+  </article>
+
+  <Footer locale="en" />
+
+  <script src="../scripts/app.ts"></script>
+</BaseLayout>
+
+<style>
+  .content-container {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .lead {
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: var(--color-body);
+  }
+
+  .info-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .info-block h2 {
+    font-size: 1.4rem;
+    color: var(--color-ink);
+  }
+
+  .info-block p {
+    line-height: 1.65;
+    color: var(--color-body);
+  }
+
+  .usecases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-2);
+  }
+
+  .usecase-card {
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    border: 1px solid var(--color-hairline);
+  }
+
+  .usecase-card h3 {
+    font-size: 1.05rem;
+    color: var(--color-ink);
+  }
+
+  .usecase-card p {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--color-body);
+  }
+</style>

@@ -1,0 +1,29 @@
+# NoSleep AI Usage & Citation Policy
+# https://nosleeppage.com/ai.txt
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+Search crawling: allowed
+AI Citation: allowed
+Attribution: appreciated. Name "NoSleep" and cite https://nosleeppage.com/
+
+Summary: https://nosleeppage.com/llms.txt
+Inventory: https://nosleeppage.com/llms-full.txt
+Privacy: https://nosleeppage.com/privacy/
+Author: Atharva Mahamuni (https://x.com/athmatwt)

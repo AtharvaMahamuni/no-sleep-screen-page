@@ -1,0 +1,24 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://nosleeppage.com/#org",
+      "name": "NoSleep",
+      "url": "https://nosleeppage.com/",
+      "logo": "https://nosleeppage.com/favicon.svg",
+      "founder": { "@id": "https://nosleeppage.com/#atharva" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://nosleeppage.com/#atharva",
+      "name": "Atharva Mahamuni",
+      "url": "https://nosleeppage.com/about/",
+      "sameAs": [
+        "https://x.com/athmatwt",
+        "https://twitter.com/athmatwt",
+        "https://github.com/AtharvaMahamuni"
+      ]
+    }
+  ]
+}

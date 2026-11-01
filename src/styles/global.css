@@ -52,6 +52,25 @@ body {
   justify-content: space-between;
 }
 
+/* Fullscreen Ambient Idle Overlays Auto-Hide */
+.ambient-idle-hidden {
+  cursor: none !important;
+}
+
+.ambient-idle-hidden .app-header,
+.ambient-idle-hidden .hero-wake-wrapper,
+.ambient-idle-hidden .controls-bar-wrapper {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.6s var(--ease-out-quint);
+}
+
+.app-header,
+.hero-wake-wrapper,
+.controls-bar-wrapper {
+  transition: opacity 0.3s var(--ease-out-quint);
+}
+
 /* Typography Hierarchy */
 h1, h2, h3, h4, h5, h6 {
   color: var(--color-ink);

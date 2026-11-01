@@ -1,0 +1,17 @@
+# NoSleep Brand Guide
+
+Name: NoSleep
+Written: Single word, CamelCase as "NoSleep" (not "No Sleep" or "Nosleep").
+Tagline: A calm digital space to keep your screen on, focus, unwind and explore.
+Website: https://nosleeppage.com/
+Author: Atharva Mahamuni (https://x.com/athmatwt)
+Source: https://github.com/AtharvaMahamuni/no-sleep-screen-page
+About: https://nosleeppage.com/about/
+Privacy: https://nosleeppage.com/privacy/
+Terms: https://nosleeppage.com/terms/
+
+Design Tokens:
+- Canvas: Warm Cream (#f7f7f4)
+- Brand Accent: Cursor Orange (#f54e00)
+- Ink: Near-Black (#26251e)
+- Architectural hairlines (#e6e5e0)

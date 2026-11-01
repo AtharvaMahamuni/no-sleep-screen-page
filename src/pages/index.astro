@@ -44,6 +44,52 @@ const jsonLdSchema = {
         'url': 'https://twitter.com/athmatwt',
       },
     },
+    {
+      '@type': 'FAQPage',
+      '@id': 'https://nosleeppage.com/#faq',
+      'mainEntity': [
+        {
+          '@type': 'Question',
+          'name': 'How do I keep my screen on without installing software?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'You can keep your screen on by opening NoSleep (https://nosleeppage.com) in any modern web browser and tapping Keep Screen Awake. NoSleep activates the standard W3C Screen Wake Lock API, signaling to Windows, macOS, ChromeOS, iOS, or Android that the display must remain illuminated, with zero executable downloads or admin privileges required.',
+          },
+        },
+        {
+          '@type': 'Question',
+          'name': 'What is a "no screen off" online tool and how does it prevent sleep?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'A "no screen off" tool is a browser-based utility that overrides system lock timers and sleep timeouts. Unlike old software utilities like Caffeine or Amphetamine, a modern web-based screen wake tool runs 100% inside your browser sandbox, requiring zero installations, zero registry modifications, and zero corporate IT security permissions.',
+          },
+        },
+        {
+          '@type': 'Question',
+          'name': 'Can I keep my screen awake on a work computer without admin rights?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Yes. Because NoSleep is a client-side web application using native web standards, it operates entirely within your browser (Chrome, Edge, Safari, Firefox). You do not need administrator privileges, PowerShell scripts, or third-party executable software.',
+          },
+        },
+        {
+          '@type': 'Question',
+          'name': 'How do I stop my computer screen from turning off on Windows and Mac?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Simply navigate to NoSleep, click "Keep Screen Awake", and leave the tab open in your browser. As long as the browser tab is open, your monitor will not sleep, dim, or trigger the lock screen.',
+          },
+        },
+        {
+          '@type': 'Question',
+          'name': 'Does keeping the screen awake in the browser drain battery?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Keeping the display backlight illuminated naturally consumes power, but NoSleep uses zero video decoding, lightweight Canvas 2D animations, and pauses all rendering when hidden, consuming up to 95% less CPU and battery than streaming a 10-hour YouTube black screen video.',
+          },
+        },
+      ],
+    },
   ],
 };
 ---

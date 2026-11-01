@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "NoSleep",
+  "url": "https://nosleeppage.com/",
+  "description": "Zero-install ambient digital space providing client-side screen wake lock, procedural sound generation, and focus timers.",
+  "author": {
+    "name": "Atharva Mahamuni",
+    "url": "https://x.com/athmatwt"
+  },
+  "capabilities": [
+    "Keep screen awake without software downloads",
+    "Keep screen on (no screen off tool)",
+    "Procedural ambient sound mixing (rain, ocean, brown noise, forest, lo-fi)",
+    "Drift-free focus and sleep timers",
+    "100% client-side privacy"
+  ],
+  "llms_txt": "https://nosleeppage.com/llms.txt",
+  "llms_full_txt": "https://nosleeppage.com/llms-full.txt"
+}

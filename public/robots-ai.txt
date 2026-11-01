@@ -1,0 +1,6 @@
+# NoSleep AI Agent Robots Policy
+User-agent: *
+Allow: /
+Disallow: /offline/
+
+Sitemap: https://nosleeppage.com/sitemap.xml

@@ -341,14 +341,94 @@ export class NoSleepApp {
   private bindFullscreenAndPiP(): void {
     const fsBtn = document.getElementById('fullscreen-toggle-btn');
     const pipBtn = document.getElementById('pip-toggle-btn');
+    const container = document.querySelector('.ambient-app-container') || document.body;
 
-    fsBtn?.addEventListener('click', () => {
+    let idleTimeoutId: number | null = null;
+    const IDLE_DELAY_MS = 2800; // 2.8s of no mouse movement in fullscreen
+
+    const showOverlays = () => {
+      container.classList.remove('ambient-idle-hidden');
+    };
+
+    const hideOverlaysIfIdle = () => {
+      // Only hide if currently in fullscreen
+      if (!document.fullscreenElement) return;
+
+      // Do not hide if any modal is open
+      const mixerOpen = document.getElementById('sound-mixer-modal')?.classList.contains('open');
+      const timerOpen = document.getElementById('timer-modal')?.classList.contains('open');
+      if (mixerOpen || timerOpen) return;
+
+      container.classList.add('ambient-idle-hidden');
+    };
+
+    const resetIdleTimer = () => {
+      showOverlays();
+
+      if (idleTimeoutId !== null) {
+        window.clearTimeout(idleTimeoutId);
+        idleTimeoutId = null;
+      }
+
+      if (document.fullscreenElement) {
+        idleTimeoutId = window.setTimeout(hideOverlaysIfIdle, IDLE_DELAY_MS);
+      }
+    };
+
+    // Fullscreen state listener
+    document.addEventListener('fullscreenchange', () => {
+      if (document.fullscreenElement) {
+        resetIdleTimer();
+      } else {
+        if (idleTimeoutId !== null) {
+          window.clearTimeout(idleTimeoutId);
+          idleTimeoutId = null;
+        }
+        showOverlays();
+      }
+    });
+
+    // Inactivity listeners
+    const activityEvents = ['mousemove', 'mousedown', 'pointermove', 'touchstart', 'keydown'];
+    activityEvents.forEach(eventType => {
+      window.addEventListener(
+        eventType,
+        () => {
+          if (document.fullscreenElement) {
+            resetIdleTimer();
+          }
+        },
+        { passive: true }
+      );
+    });
+
+    const toggleFullscreen = () => {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch(err => {
           console.warn('[NoSleep] Fullscreen request denied:', err);
         });
       } else {
         document.exitFullscreen().catch(console.warn);
+      }
+    };
+
+    fsBtn?.addEventListener('click', toggleFullscreen);
+
+    // Keyboard shortcuts: F for Fullscreen, Z for Zen mode toggle
+    window.addEventListener('keydown', (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement;
+      const isInput = target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable);
+      if (isInput) return;
+
+      if ((e.key === 'f' || e.key === 'F') && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        e.preventDefault();
+        toggleFullscreen();
+      } else if ((e.key === 'z' || e.key === 'Z') && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        e.preventDefault();
+        const isHidden = container.classList.toggle('ambient-idle-hidden');
+        if (!isHidden && document.fullscreenElement) {
+          resetIdleTimer();
+        }
       }
     });
 
