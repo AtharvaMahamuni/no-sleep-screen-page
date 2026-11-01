@@ -1,27 +1,22 @@
 # NoSleep
 
-> A calm, private digital space to keep screens awake, focus with ambient soundscapes, and explore interactive visuals.
+> A calm, private digital space to keep your screen awake, focus with ambient soundscapes, and explore interactive visuals.
 
-- Website: https://nosleeppage.com
-- Framework: Astro (Static Output on GitHub Pages)
-- Technology: Screen Wake Lock API, Web Audio API, Canvas 2D, WebGL
-- Privacy: 100% Client-Side. No Accounts, No Cookies, No Telemetry.
-- License: Open, Free to Use.
+NoSleep (https://nosleeppage.com) is an open web utility using the W3C Screen Wake Lock API and Web Audio API procedural synthesis. It runs 100% in the browser with zero accounts, zero software downloads, and zero telemetry.
 
-## Core Capabilities
-1. Screen Wake Lock: Prevents displays from sleeping on Android, Windows, macOS, and iOS (Safari 16.4+).
-2. Ambient Audio Mixer: High-fidelity loop mixing of Rain, Ocean, Forest, Brown Noise, and Lo-Fi.
-3. Focus Environments: Drift-free Pomodoro timers paired with calming generative animations.
-4. Offline Support: Progressive Web App (PWA) with client-side audio caching.
+## Core Pages
+- [NoSleep Web Tool](https://nosleeppage.com/): Primary screen wake lock engine, focus timer, and ambient space.
+- [Keep Screen On Online](https://nosleeppage.com/keep-screen-on/): Prevent display sleep on Windows, Mac, iPad, and Android without downloads or admin rights.
+- [No Screen Off](https://nosleeppage.com/no-screen-off/): Free browser display awake utility for work, study, reading, and presentations.
+- [Rain Ambient Soundscape](https://nosleeppage.com/sounds/rain/): High-fidelity procedural rainfall generator for deep study and sleep.
+- [Ocean Waves Soundscape](https://nosleeppage.com/sounds/ocean/): Deep relaxing ocean surf generator.
+- [Brown Noise Generator](https://nosleeppage.com/sounds/brown-noise/): Low-frequency acoustic masking sound.
+- [Pomodoro Focus Timer](https://nosleeppage.com/focus/pomodoro/): 25-minute focus intervals with ambient audio.
+- [Breathing Relaxation](https://nosleeppage.com/relax/breathing/): 4-7-8 breathing circle generative art.
+- [About NoSleep](https://nosleeppage.com/about/): Project vision, architecture, and technology stack.
+- [Privacy Policy](https://nosleeppage.com/privacy/): 100% client-side privacy specification.
+- [Terms of Service](https://nosleeppage.com/terms/): Terms of service.
+- [Audio Licensing Credits](https://nosleeppage.com/audio-credits/): Procedural synthesis and licensing credits.
 
-## Key Links
-- Home & Tool: https://nosleeppage.com/
-- Keep Screen On Online: https://nosleeppage.com/keep-screen-on/
-- No Screen Off Tool: https://nosleeppage.com/no-screen-off/
-- Rain Soundscape: https://nosleeppage.com/sounds/rain/
-- Ocean Soundscape: https://nosleeppage.com/sounds/ocean/
-- Brown Noise: https://nosleeppage.com/sounds/brown-noise/
-- Pomodoro Focus: https://nosleeppage.com/focus/pomodoro/
-- Breathing Relaxation: https://nosleeppage.com/relax/breathing/
-- Audio Licensing Credits: https://nosleeppage.com/audio-credits/
-- Privacy Policy: https://nosleeppage.com/privacy/
+## Optional
+- [Full Technical Specification](https://nosleeppage.com/llms-full.txt): Complete architecture, browser API implementations, and audio synthesis details.

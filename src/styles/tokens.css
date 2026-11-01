@@ -20,11 +20,11 @@
   --color-surface-glass: rgba(247, 247, 244, 0.85);
   --color-surface-overlay: rgba(38, 37, 30, 0.4);
 
-  /* Near-Black Warm Ink & Text */
+  /* Near-Black Warm Ink & Text (WCAG AAA compliant contrast >= 7:1) */
   --color-ink: #26251e;
-  --color-body: #5a5852;
-  --color-muted: #807d72;
-  --color-muted-soft: #a09c92;
+  --color-body: #383630;
+  --color-muted: #4e4c44;
+  --color-muted-soft: #59574f;
   --color-inverse-ink: #f7f7f4;
 
   /* Architectural Hairline Borders */
@@ -89,9 +89,9 @@
   --color-surface-overlay: rgba(0, 0, 0, 0.65);
 
   --color-ink: #f7f7f4;
-  --color-body: #b8b5ac;
-  --color-muted: #78756d;
-  --color-muted-soft: #5e5c55;
+  --color-body: #e2dfd4;
+  --color-muted: #b5b2a6;
+  --color-muted-soft: #9e9b90;
   --color-inverse-ink: #26251e;
 
   --color-hairline: #2a2924;

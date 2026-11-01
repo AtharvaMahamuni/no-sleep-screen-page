@@ -121,14 +121,15 @@ const t = useTranslations(locale);
     background: var(--color-canvas);
     border: 1px solid var(--color-hairline);
     font-size: 0.78rem;
-    font-weight: 500;
+    font-weight: 600;
+    color: var(--color-ink);
   }
 
   .status-indicator {
     width: 8px;
     height: 8px;
     border-radius: var(--radius-full);
-    background: var(--color-muted);
+    background: var(--color-body);
     transition: all var(--duration-fast) var(--ease-out-quint);
   }
 
@@ -160,10 +161,10 @@ const t = useTranslations(locale);
   }
 
   .hero-wake-button.active {
-    background: var(--color-primary);
-    border-color: var(--color-primary-hover);
+    background: var(--color-ink);
+    border: 2px solid var(--color-primary);
     color: #ffffff;
-    box-shadow: 0 8px 24px var(--color-primary-glow), 0 0 0 3px var(--color-primary-soft);
+    box-shadow: 0 8px 24px var(--color-primary-glow), 0 0 0 2px var(--color-primary);
   }
 
   .hero-button-icon-wrapper {
@@ -180,7 +181,7 @@ const t = useTranslations(locale);
   }
 
   .hero-wake-button.active .hero-button-icon-wrapper {
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--color-primary);
     color: #ffffff;
   }
 
@@ -212,14 +213,14 @@ const t = useTranslations(locale);
   }
 
   .hero-btn-sub {
-    font-size: 0.82rem;
-    color: var(--color-muted);
+    font-size: 0.85rem;
+    color: var(--color-body);
     transition: color var(--duration-fast) var(--ease-out-quint);
-    line-height: 1.35;
+    line-height: 1.4;
   }
 
   .hero-wake-button.active .hero-btn-sub {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--color-canvas);
   }
 
   .hero-badges-group {
@@ -234,18 +235,18 @@ const t = useTranslations(locale);
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    font-size: 0.72rem;
+    font-size: 0.76rem;
     font-weight: 500;
-    color: var(--color-muted);
-    padding: 2px 8px;
+    color: var(--color-body);
+    padding: 3px 10px;
     border-radius: var(--radius-full);
     background: var(--color-canvas);
-    border: 1px solid var(--color-hairline-soft);
+    border: 1px solid var(--color-hairline-strong);
   }
 
   .hero-hotkey-row {
-    font-size: 0.72rem;
-    color: var(--color-muted-soft);
+    font-size: 0.76rem;
+    color: var(--color-body);
   }
 
   @keyframes status-pulse {

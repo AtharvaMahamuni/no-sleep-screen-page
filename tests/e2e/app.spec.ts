@@ -78,10 +78,9 @@ test.describe('NoSleep Core Application', () => {
     await expect(page.locator('#hero-wakelock-toggle-btn')).toBeVisible();
   });
 
-  test('passes axe-core accessibility audit', async ({ page }) => {
+  test('passes axe-core accessibility audit with strict color-contrast check', async ({ page }) => {
     await page.goto('/');
     const accessibilityScanResults = await new AxeBuilder({ page })
-      .disableRules(['color-contrast']) // Dynamic canvas background
       .analyze();
 
     expect(accessibilityScanResults.violations).toEqual([]);

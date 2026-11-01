@@ -168,7 +168,7 @@ const t = useTranslations(locale);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--color-muted);
+    color: var(--color-body);
   }
 
   .preset-buttons {
@@ -194,8 +194,9 @@ const t = useTranslations(locale);
   }
 
   .preset-pill.active {
-    background: var(--color-primary);
+    background: var(--color-ink);
     color: #ffffff;
+    border: 1px solid var(--color-primary);
     font-weight: 600;
   }
 
@@ -248,22 +249,23 @@ const t = useTranslations(locale);
   }
 
   .primary-dock-btn {
-    background: var(--color-primary-soft);
-    border-color: rgba(245, 78, 0, 0.25);
-    color: var(--color-primary);
+    background: var(--color-canvas);
+    border-color: var(--color-hairline-strong);
+    color: var(--color-ink);
+    font-weight: 600;
   }
 
   .primary-dock-btn.playing {
-    background: var(--color-primary);
+    background: var(--color-ink);
     color: #ffffff;
-    border-color: var(--color-primary-hover);
+    border-color: var(--color-primary);
   }
 
   .dock-badge {
     padding: 1px 6px;
     border-radius: var(--radius-full);
     background: var(--color-hairline);
-    color: var(--color-body);
+    color: var(--color-ink);
     font-size: 0.72rem;
     font-family: var(--font-mono);
     font-weight: 600;
@@ -288,7 +290,7 @@ const t = useTranslations(locale);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--color-muted);
+    color: var(--color-body);
     line-height: 1;
   }
 
@@ -324,19 +326,20 @@ const t = useTranslations(locale);
 
   .timer-btn.primary {
     background: var(--color-ink);
-    color: var(--color-canvas);
+    color: #ffffff;
     border-color: var(--color-ink);
     font-weight: 600;
   }
 
   .timer-btn.primary:hover {
-    background: var(--color-primary);
+    background: var(--color-ink);
     border-color: var(--color-primary);
     color: #ffffff;
   }
 
   .timer-btn.options {
-    color: var(--color-muted);
+    color: var(--color-body);
+    font-weight: 500;
   }
 
   .timer-btn.options:hover {
