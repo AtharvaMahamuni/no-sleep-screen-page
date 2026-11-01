@@ -2,6 +2,7 @@
 import BaseLayout from '../../components/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import AmbientCanvas from '../../components/AmbientCanvas.astro';
+import HeroWakeControl from '../../components/HeroWakeControl.astro';
 import ControlsBar from '../../components/ControlsBar.astro';
 import SoundMixerModal from '../../components/SoundMixerModal.astro';
 import TimerModal from '../../components/TimerModal.astro';
@@ -28,6 +29,7 @@ const jsonLd = {
   <main class="ambient-app-container">
     <Header locale="en" />
     <AmbientCanvas />
+    <HeroWakeControl locale="en" />
     <ControlsBar locale="en" />
     <SoundMixerModal locale="en" />
     <TimerModal locale="en" />

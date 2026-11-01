@@ -1,0 +1,291 @@
+---
+import type { SupportedLocale } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<div class="hero-wake-wrapper" id="hero-wake-wrapper">
+  <div class="hero-wake-card glass-surface" id="hero-wake-card">
+    <!-- Status Tag -->
+    <div class="hero-status-pill">
+      <span class="status-indicator" id="hero-wakelock-status-badge" data-status="idle"></span>
+      <span class="status-text mono" id="hero-wakelock-status-text">{t('wakelock.idle')}</span>
+    </div>
+
+    <!-- Main Wake Lock Action Hero Button -->
+    <button
+      id="hero-wakelock-toggle-btn"
+      class="hero-wake-button"
+      aria-label="Toggle Screen Wake Lock"
+    >
+      <div class="hero-button-icon-wrapper">
+        <!-- Sun Icon (Idle) -->
+        <svg class="wake-icon sun-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+
+        <!-- Active Radiating Eye/Shield Icon (Active) -->
+        <svg class="wake-icon active-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+      </div>
+
+      <div class="hero-button-text-group">
+        <span class="hero-btn-title" id="hero-btn-label">{t('wakelock.heroIdle')}</span>
+        <span class="hero-btn-sub" id="hero-btn-sub">{t('wakelock.heroDescIdle')}</span>
+      </div>
+    </button>
+
+    <!-- Trust & Feature Signals -->
+    <div class="hero-badges-group">
+      <span class="trust-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        100% Client-Side
+      </span>
+      <span class="trust-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+        </svg>
+        Zero Installs
+      </span>
+      <span class="trust-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="1" y="6" width="18" height="12" rx="2" ry="2"></rect>
+          <line x1="23" y1="13" x2="23" y2="11"></line>
+        </svg>
+        Zero CPU Idle
+      </span>
+    </div>
+
+    <!-- Hotkey Info -->
+    <div class="hero-hotkey-row">
+      <span class="hotkey-text mono">{t('wakelock.hotkeyHint')}</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hero-wake-wrapper {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 35;
+    pointer-events: none;
+    width: 100%;
+    max-width: 440px;
+    padding: 0 var(--space-4);
+  }
+
+  .hero-wake-card {
+    pointer-events: auto;
+    border-radius: var(--radius-lg);
+    padding: var(--space-6) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-4);
+    box-shadow: var(--shadow-floating);
+    background: var(--color-surface-glass);
+    border: 1px solid var(--color-hairline);
+    backdrop-filter: blur(16px);
+    transition: transform var(--duration-fast) var(--ease-out-quint),
+                box-shadow var(--duration-fast) var(--ease-out-quint);
+  }
+
+  .hero-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    background: var(--color-canvas);
+    border: 1px solid var(--color-hairline);
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+
+  .status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background: var(--color-muted);
+    transition: all var(--duration-fast) var(--ease-out-quint);
+  }
+
+  .status-indicator[data-status='active'] {
+    background: var(--color-primary);
+    box-shadow: 0 0 10px var(--color-primary-glow);
+    animation: status-pulse 2s ease-in-out infinite;
+  }
+
+  .hero-wake-button {
+    width: 100%;
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-md);
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-hairline-strong);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    box-shadow: 0 2px 8px rgba(38, 37, 30, 0.05);
+    transition: all var(--duration-fast) var(--ease-out-quint);
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .hero-wake-button:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(38, 37, 30, 0.08);
+  }
+
+  .hero-wake-button.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary-hover);
+    color: #ffffff;
+    box-shadow: 0 8px 24px var(--color-primary-glow), 0 0 0 3px var(--color-primary-soft);
+  }
+
+  .hero-button-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    flex-shrink: 0;
+    transition: all var(--duration-fast) var(--ease-out-quint);
+  }
+
+  .hero-wake-button.active .hero-button-icon-wrapper {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+  }
+
+  .hero-wake-button.active .sun-icon {
+    display: none;
+  }
+
+  .hero-wake-button.active .active-icon {
+    display: block !important;
+  }
+
+  .hero-button-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex-grow: 1;
+  }
+
+  .hero-btn-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    letter-spacing: -0.01em;
+    transition: color var(--duration-fast) var(--ease-out-quint);
+  }
+
+  .hero-wake-button.active .hero-btn-title {
+    color: #ffffff;
+  }
+
+  .hero-btn-sub {
+    font-size: 0.82rem;
+    color: var(--color-muted);
+    transition: color var(--duration-fast) var(--ease-out-quint);
+    line-height: 1.35;
+  }
+
+  .hero-wake-button.active .hero-btn-sub {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .hero-badges-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .trust-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--color-muted);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    background: var(--color-canvas);
+    border: 1px solid var(--color-hairline-soft);
+  }
+
+  .hero-hotkey-row {
+    font-size: 0.72rem;
+    color: var(--color-muted-soft);
+  }
+
+  @keyframes status-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.3);
+      opacity: 0.75;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-wake-wrapper {
+      top: 45%;
+      padding: 0 var(--space-3);
+    }
+
+    .hero-wake-card {
+      padding: var(--space-5) var(--space-4);
+      gap: var(--space-3);
+    }
+
+    .hero-wake-button {
+      padding: var(--space-3) var(--space-4);
+      gap: var(--space-3);
+    }
+
+    .hero-button-icon-wrapper {
+      width: 38px;
+      height: 38px;
+    }
+
+    .hero-btn-title {
+      font-size: 1.02rem;
+    }
+
+    .hero-btn-sub {
+      font-size: 0.76rem;
+    }
+  }
+</style>

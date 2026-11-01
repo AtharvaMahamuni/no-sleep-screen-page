@@ -36,6 +36,22 @@ test.describe('NoSleep Core Application', () => {
     await expect(modal).not.toHaveClass(/open/);
   });
 
+  test('hero wake lock button and timer options modal work seamlessly', async ({ page }) => {
+    await page.goto('/');
+    const heroBtn = page.locator('#hero-wakelock-toggle-btn');
+    await expect(heroBtn).toBeVisible();
+
+    // Timer modal open/close
+    const openTimerBtn = page.locator('#open-timer-modal-btn');
+    await openTimerBtn.click();
+    const timerModal = page.locator('#timer-modal');
+    await expect(timerModal).toHaveClass(/open/);
+
+    const closeTimerBtn = page.locator('#close-timer-modal-btn');
+    await closeTimerBtn.click();
+    await expect(timerModal).not.toHaveClass(/open/);
+  });
+
   test('passes axe-core accessibility audit', async ({ page }) => {
     await page.goto('/');
     const accessibilityScanResults = await new AxeBuilder({ page })
