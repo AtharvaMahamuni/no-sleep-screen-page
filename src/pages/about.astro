@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="About NoSleep — Philosophy & Architecture"
+  description="Learn about NoSleep's mission, privacy-first architecture, and why we created a calm digital ambient space."
+  canonicalPath="/about/"
+>
+  <Header locale="en" />
+
+  <main class="page-container">
+    <h1>About NoSleep</h1>
+    <p class="subtitle">A calm digital space to keep your screen awake, find your focus and explore ambient experiences.</p>
+
+    <section class="section">
+      <h2>The Problem with Existing Tools</h2>
+      <p>
+        Most "keep screen awake" utilities are either barren single-button pages or cluttered with programmatic ads,
+        trackers, and paid subscriptions. Conversely, ambient sound apps lock basic presets behind monthly paywalls
+        and ignore the practical utility of display timeout management.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Our Philosophy</h2>
+      <ul>
+        <li><strong>Useful Immediately:</strong> The screen wake lock is accessible on first render with zero onboarding.</li>
+        <li><strong>Zero Account Overhead:</strong> No logins, no passwords, no email collection.</li>
+        <li><strong>100% Client-Side Privacy:</strong> All audio synthesis and timer logic execute in your local browser.</li>
+        <li><strong>Lightweight & Static:</strong> Built with Astro and deployed globally on GitHub Pages.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Creator</h2>
+      <p>
+        NoSleep was architected and built by Atharva Mahamuni (<a href="https://twitter.com/athmatwt" target="_blank" rel="noopener noreferrer">@athmatwt</a>)
+        as part of a modern suite of fast, privacy-first web utilities.
+      </p>
+    </section>
+  </main>
+
+  <Footer locale="en" />
+</BaseLayout>
+
+<style>
+  .page-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: calc(var(--space-16) + 40px) var(--space-4) var(--space-12);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .subtitle {
+    font-size: 1.15rem;
+    color: var(--color-muted);
+    line-height: 1.5;
+  }
+
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .section h2 {
+    font-size: 1.3rem;
+  }
+
+  .section p, .section li {
+    color: var(--color-body);
+    line-height: 1.65;
+  }
+
+  .section ul {
+    margin-left: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+</style>

@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import AmbientCanvas from '../../components/AmbientCanvas.astro';
+import ControlsBar from '../../components/ControlsBar.astro';
+import SoundMixerModal from '../../components/SoundMixerModal.astro';
+import TimerModal from '../../components/TimerModal.astro';
+import QuickAnswers from '../../components/QuickAnswers.astro';
+import Footer from '../../components/Footer.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const locale = 'zh';
+const t = useTranslations(locale);
+
+const jsonLdSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  'name': 'NoSleep 简体中文',
+  'url': 'https://nosleeppage.com/zh/',
+  'description': t('site.description'),
+  'applicationCategory': 'UtilitiesApplication',
+  'operatingSystem': 'All',
+  'inLanguage': 'zh',
+};
+---
+
+<BaseLayout
+  title={t('site.title')}
+  description={t('site.description')}
+  locale={locale}
+  canonicalPath="/zh/"
+>
+  <JsonLd slot="head" schema={jsonLdSchema} />
+
+  <main class="ambient-app-container">
+    <Header locale={locale} />
+    <AmbientCanvas />
+    <ControlsBar locale={locale} />
+    <SoundMixerModal locale={locale} />
+    <TimerModal locale={locale} />
+  </main>
+
+  <QuickAnswers locale={locale} />
+  <Footer locale={locale} />
+
+  <script src="../../scripts/app.ts"></script>
+</BaseLayout>

@@ -1,0 +1,30 @@
+# ==============================================================================
+# NoSleep Robots Policy (https://nosleeppage.com)
+# ==============================================================================
+User-agent: *
+Allow: /
+Disallow: /offline/
+
+# AI Search & Retrieval Crawlers (Explicitly Allowed for Citation Discovery)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://nosleeppage.com/sitemap.xml

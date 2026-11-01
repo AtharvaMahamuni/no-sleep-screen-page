@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import AmbientCanvas from '../../components/AmbientCanvas.astro';
+import ControlsBar from '../../components/ControlsBar.astro';
+import SoundMixerModal from '../../components/SoundMixerModal.astro';
+import TimerModal from '../../components/TimerModal.astro';
+import Footer from '../../components/Footer.astro';
+import JsonLd from '../../components/JsonLd.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  'name': 'Interactive 4-7-8 Breathing Exercise & Visualizer — NoSleep',
+  'url': 'https://nosleeppage.com/relax/breathing/',
+  'description': 'Guided 4-7-8 breathing circle animation with ambient surf audio and screen wake lock.',
+  'applicationCategory': 'HealthApplication',
+};
+---
+
+<BaseLayout
+  title="Interactive 4-7-8 Breathing Exercise Visualizer — NoSleep"
+  description="Calm anxiety and prepare for deep rest with our interactive 4-7-8 breathing orb. Rhythmic visual pacing, ocean sounds, and screen wake lock."
+  canonicalPath="/relax/breathing/"
+>
+  <JsonLd slot="head" schema={jsonLd} />
+
+  <main class="ambient-app-container">
+    <Header locale="en" />
+    <AmbientCanvas />
+    <ControlsBar locale="en" />
+    <SoundMixerModal locale="en" />
+    <TimerModal locale="en" />
+  </main>
+
+  <article class="content-container">
+    <h1>Interactive 4-7-8 Breathing Exercise for Deep Relaxation</h1>
+    <p class="lead">
+      The 4-7-8 breathing pattern is a proven natural tranquilizer for the nervous system. Developed by Dr. Andrew Weil,
+      this rhythmic pacing stimulates the parasympathetic vagus nerve, rapidly reducing heart rate and blood pressure.
+    </p>
+
+    <section class="info-block">
+      <h2>How to Practice 4-7-8 Breathing</h2>
+      <ol class="steps-list">
+        <li><strong>Inhale (4 seconds):</strong> Close your mouth and inhale quietly through your nose as the orb expands.</li>
+        <li><strong>Hold (7 seconds):</strong> Hold your breath steadily while the orb remains fully expanded.</li>
+        <li><strong>Exhale (8 seconds):</strong> Exhale completely through your mouth with a soft whoosh sound as the orb gently contracts.</li>
+      </ol>
+    </section>
+  </article>
+
+  <Footer locale="en" />
+
+  <script src="../../scripts/app.ts"></script>
+</BaseLayout>
+
+<style>
+  .content-container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .lead {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--color-body);
+  }
+
+  .info-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .info-block h2 {
+    font-size: 1.35rem;
+  }
+
+  .steps-list {
+    margin-left: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    line-height: 1.6;
+  }
+</style>

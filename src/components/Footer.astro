@@ -1,0 +1,83 @@
+---
+import type { SupportedLocale } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="app-footer">
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="/about/">{t('nav.about')}</a>
+      <span class="sep">/</span>
+      <a href="/privacy/">{t('nav.privacy')}</a>
+      <span class="sep">/</span>
+      <a href="/terms/">{t('nav.terms')}</a>
+      <span class="sep">/</span>
+      <a href="/audio-credits/">{t('nav.credits')}</a>
+    </div>
+    <div class="footer-meta">
+      <span>© {currentYear} NoSleep</span>
+      <span class="sep">•</span>
+      <span>Crafted by <a href="https://twitter.com/athmatwt" target="_blank" rel="noopener noreferrer">@athmatwt</a></span>
+      <span class="sep">•</span>
+      <span>100% Client-Side</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .app-footer {
+    position: relative;
+    z-index: 10;
+    padding: var(--space-6) var(--space-4);
+    background: var(--color-canvas);
+    border-top: 1px solid var(--color-hairline);
+    font-size: 0.82rem;
+    color: var(--color-muted);
+  }
+
+  .footer-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .footer-links, .footer-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .sep {
+    color: var(--color-hairline-strong);
+  }
+
+  .footer-links a {
+    color: var(--color-body);
+    font-weight: 500;
+  }
+
+  .footer-links a:hover {
+    color: var(--color-primary);
+  }
+
+  .footer-meta a {
+    color: var(--color-body);
+  }
+
+  .footer-meta a:hover {
+    color: var(--color-primary);
+  }
+</style>

@@ -1,0 +1,86 @@
+---
+import type { SupportedLocale } from '../i18n/ui';
+import { LOCALES, DEFAULT_LOCALE } from '../i18n/ui';
+import { getLocalizedPath, hasMultilingualAlternates } from '../i18n/utils';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  locale?: SupportedLocale;
+  canonicalPath?: string;
+}
+
+const {
+  title,
+  description,
+  locale = DEFAULT_LOCALE,
+  canonicalPath = Astro.url.pathname,
+} = Astro.props;
+
+const siteUrl = 'https://nosleeppage.com';
+const canonicalUrl = new URL(canonicalPath, siteUrl).href;
+const currentDir = LOCALES[locale]?.dir || 'ltr';
+---
+
+<!doctype html>
+<html lang={locale} dir={currentDir}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${siteUrl}/og-image.png`} />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@athmatwt" />
+    <meta name="twitter:creator" content="@athmatwt" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}/og-image.png`} />
+
+    <!-- Theme & Icons -->
+    <meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#121210" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Multilingual Alternates -->
+    {hasMultilingualAlternates(canonicalPath) && Object.keys(LOCALES).map((loc) => (
+      <link
+        rel="alternate"
+        hreflang={loc}
+        href={`${siteUrl}${getLocalizedPath(canonicalPath, loc as SupportedLocale)}`}
+      />
+    ))}
+    {hasMultilingualAlternates(canonicalPath) && (
+      <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
+    )}
+
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+
+    <script>
+      // Register PWA service worker if supported
+      if ('serviceWorker' in navigator && import.meta.env.PROD) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(err => {
+            console.warn('[NoSleep] SW registration failed:', err);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

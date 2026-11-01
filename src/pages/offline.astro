@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Offline Mode — NoSleep"
+  description="NoSleep is running in offline mode. Core screen wake lock and procedural ambient sounds remain functional."
+  canonicalPath="/offline/"
+>
+  <Header locale="en" />
+
+  <main class="page-container">
+    <div class="offline-box">
+      <span class="offline-badge mono">Offline Mode</span>
+      <h1>You are currently offline</h1>
+      <p>
+        Good news: NoSleep's Screen Wake Lock, Focus Timer, and procedural sound generators work completely offline
+        without an internet connection.
+      </p>
+      <a href="/" class="return-btn">Launch Ambient Space</a>
+    </div>
+  </main>
+
+  <Footer locale="en" />
+</BaseLayout>
+
+<style>
+  .page-container {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-8) var(--space-4);
+  }
+
+  .offline-box {
+    text-align: center;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .offline-badge {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .return-btn {
+    margin-top: var(--space-4);
+    padding: var(--space-2) var(--space-5);
+    background: var(--color-primary);
+    color: #ffffff;
+    border-radius: var(--radius-full);
+    font-weight: 500;
+  }
+
+  .return-btn:hover {
+    background: var(--color-primary-hover);
+    color: #ffffff;
+  }
+</style>

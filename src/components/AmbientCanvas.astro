@@ -1,0 +1,29 @@
+---
+interface Props {
+  className?: string;
+}
+
+const { className = '' } = Astro.props;
+---
+
+<div class={`ambient-canvas-wrapper ${className}`}>
+  <canvas id="ambient-canvas" aria-label="Ambient Visual Canvas"></canvas>
+</div>
+
+<style>
+  .ambient-canvas-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: auto;
+  }
+
+  #ambient-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+</style>

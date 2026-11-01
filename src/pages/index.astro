@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import AmbientCanvas from '../components/AmbientCanvas.astro';
+import ControlsBar from '../components/ControlsBar.astro';
+import SoundMixerModal from '../components/SoundMixerModal.astro';
+import TimerModal from '../components/TimerModal.astro';
+import QuickAnswers from '../components/QuickAnswers.astro';
+import Footer from '../components/Footer.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { useTranslations } from '../i18n/utils';
+
+const locale = 'en';
+const t = useTranslations(locale);
+
+const jsonLdSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': 'https://nosleeppage.com/#website',
+      'url': 'https://nosleeppage.com/',
+      'name': 'NoSleep',
+      'description': t('site.description'),
+      'inLanguage': 'en-US',
+    },
+    {
+      '@type': 'WebApplication',
+      '@id': 'https://nosleeppage.com/#webapp',
+      'url': 'https://nosleeppage.com/',
+      'name': 'NoSleep Screen Wake & Ambient Space',
+      'applicationCategory': 'UtilitiesApplication',
+      'operatingSystem': 'All',
+      'browserRequirements': 'Requires JavaScript and Screen Wake Lock API support',
+      'offers': {
+        '@type': 'Offer',
+        'price': '0',
+        'priceCurrency': 'USD',
+      },
+      'author': {
+        '@type': 'Person',
+        'name': 'Atharva Mahamuni',
+        'url': 'https://twitter.com/athmatwt',
+      },
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={t('site.title')}
+  description={t('site.description')}
+  locale={locale}
+  canonicalPath="/"
+>
+  <JsonLd slot="head" schema={jsonLdSchema} />
+
+  <!-- Ambient Application Viewport -->
+  <main class="ambient-app-container">
+    <Header locale={locale} />
+    <AmbientCanvas />
+    <ControlsBar locale={locale} />
+    <SoundMixerModal locale={locale} />
+    <TimerModal locale={locale} />
+  </main>
+
+  <!-- User Intent, Guides & FAQ Section -->
+  <QuickAnswers locale={locale} />
+
+  <Footer locale={locale} />
+
+  <!-- Master Application Script -->
+  <script src="../scripts/app.ts"></script>
+</BaseLayout>

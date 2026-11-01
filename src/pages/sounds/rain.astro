@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import AmbientCanvas from '../../components/AmbientCanvas.astro';
+import ControlsBar from '../../components/ControlsBar.astro';
+import SoundMixerModal from '../../components/SoundMixerModal.astro';
+import TimerModal from '../../components/TimerModal.astro';
+import Footer from '../../components/Footer.astro';
+import JsonLd from '../../components/JsonLd.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  'name': 'Ambient Rain Sounds for Study & Focus — NoSleep',
+  'url': 'https://nosleeppage.com/sounds/rain/',
+  'description': 'Continuous, high-fidelity ambient rain sounds with screen wake lock and study timer.',
+  'applicationCategory': 'MultimediaApplication',
+};
+---
+
+<BaseLayout
+  title="Ambient Rain Sounds for Study & Sleep — NoSleep"
+  description="Immerse yourself in gentle, customizable rain sounds mixed with thunder and soft wind. High-fidelity audio with screen wake lock and focus timers."
+  canonicalPath="/sounds/rain/"
+>
+  <JsonLd slot="head" schema={jsonLd} />
+
+  <main class="ambient-app-container">
+    <Header locale="en" />
+    <AmbientCanvas />
+    <ControlsBar locale="en" />
+    <SoundMixerModal locale="en" />
+    <TimerModal locale="en" />
+  </main>
+
+  <article class="content-container">
+    <h1>Customizable Ambient Rain Sounds for Deep Study & Sleep</h1>
+    <p class="lead">
+      Immerse yourself in the calming patter of a gentle rainfall. Rain sounds mask disruptive background noise,
+      lower stress hormones, and promote alpha brainwave activity for deep reading and study.
+    </p>
+
+    <section class="info-block">
+      <h2>Why Rain Sounds Enhance Concentration</h2>
+      <p>
+        The frequency spectrum of falling rain acts as a natural acoustic blanket, muting sudden speech or slamming
+        doors in offices, libraries, and dorms. Combined with NoSleep's screen wake lock, your reference materials
+        remain illuminated without accidental display lockouts.
+      </p>
+    </section>
+
+    <section class="info-block">
+      <h2>How to Use This Soundscape</h2>
+      <p>
+        Click <strong>Play Ambient Audio</strong> to start the rainfall. Open the <strong>Sound Mixer</strong> to blend in
+        warm brown noise or distant thunder, and activate the <strong>Pomodoro Timer</strong> for 25-minute focus intervals.
+      </p>
+    </section>
+  </article>
+
+  <Footer locale="en" />
+
+  <script src="../../scripts/app.ts"></script>
+</BaseLayout>
+
+<style>
+  .content-container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .lead {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--color-body);
+  }
+
+  .info-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .info-block h2 {
+    font-size: 1.35rem;
+  }
+
+  .info-block p {
+    line-height: 1.65;
+  }
+</style>

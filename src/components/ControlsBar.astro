@@ -1,0 +1,254 @@
+---
+import type { SupportedLocale } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<div class="controls-bar-wrapper">
+  <!-- Presets Pill Bar -->
+  <div class="preset-pills-bar glass-surface">
+    <button class="preset-pill active" data-preset-id="rainy-evening">
+      <span class="preset-dot"></span>
+      <span>{t('preset.rainy')}</span>
+    </button>
+    <button class="preset-pill" data-preset-id="deep-focus">
+      <span class="preset-dot"></span>
+      <span>{t('preset.deepFocus')}</span>
+    </button>
+    <button class="preset-pill" data-preset-id="ocean-calm">
+      <span class="preset-dot"></span>
+      <span>{t('preset.oceanCalm')}</span>
+    </button>
+  </div>
+
+  <!-- Primary Floating Action Controls -->
+  <div class="controls-dock glass-surface">
+    <!-- Audio Trigger -->
+    <button id="audio-play-pause-btn" class="dock-btn primary-dock-btn" aria-label="Play or Pause Ambient Audio">
+      <svg class="play-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+      </svg>
+      <span>{t('sound.play')}</span>
+    </button>
+
+    <!-- Sound Mixer Trigger -->
+    <button id="open-mixer-btn" class="dock-btn" aria-label="Open Sound Mixer">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="4" y1="21" x2="4" y2="14"></line>
+        <line x1="4" y1="10" x2="4" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="12"></line>
+        <line x1="12" y1="8" x2="12" y2="3"></line>
+        <line x1="20" y1="21" x2="20" y2="16"></line>
+        <line x1="20" y1="12" x2="20" y2="3"></line>
+        <line x1="1" y1="14" x2="7" y2="14"></line>
+        <line x1="9" y1="8" x2="15" y2="8"></line>
+        <line x1="17" y1="16" x2="23" y2="16"></line>
+      </svg>
+      <span>{t('sound.mixer')}</span>
+    </button>
+
+    <div class="dock-divider"></div>
+
+    <!-- Timer Widget -->
+    <div class="dock-timer-group">
+      <span id="timer-display" class="timer-digits mono">25:00</span>
+      <button id="timer-start-pause-btn" class="timer-btn" aria-label="Start or Pause Timer">
+        {t('timer.start')}
+      </button>
+      <button id="timer-reset-btn" class="timer-btn secondary" aria-label="Reset Timer">
+        {t('timer.reset')}
+      </button>
+      <button id="open-timer-modal-btn" class="icon-dock-btn" aria-label="Timer Options">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <div class="dock-divider"></div>
+
+    <!-- Window & Utility Tools -->
+    <div class="dock-actions-group">
+      <button id="share-preset-btn" class="icon-dock-btn" aria-label="Share Preset Link" title={t('ui.share')}>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="18" cy="5" r="3"></circle>
+          <circle cx="6" cy="12" r="3"></circle>
+          <circle cx="18" cy="19" r="3"></circle>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+        </svg>
+      </button>
+
+      <button id="pip-toggle-btn" class="icon-dock-btn" aria-label="Picture in Picture Window" title={t('ui.pip')}>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+          <rect x="11" y="9" width="9" height="6" rx="1"></rect>
+        </svg>
+      </button>
+
+      <button id="fullscreen-toggle-btn" class="icon-dock-btn" aria-label="Toggle Fullscreen" title={t('ui.fullscreen')}>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .controls-bar-wrapper {
+    position: absolute;
+    bottom: var(--space-6);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    z-index: 50;
+    width: max-content;
+    max-width: calc(100vw - var(--space-6));
+  }
+
+  .preset-pills-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-full);
+  }
+
+  .preset-pill {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--color-body);
+    gap: var(--space-1-5);
+  }
+
+  .preset-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: var(--color-muted);
+  }
+
+  .preset-pill.active {
+    background: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .preset-pill.active .preset-dot {
+    background: #ffffff;
+  }
+
+  .controls-dock {
+    display: flex;
+    align-items: center;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-full);
+    gap: var(--space-2);
+  }
+
+  .dock-btn {
+    padding: var(--space-1-5) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-ink);
+    gap: var(--space-2);
+  }
+
+  .dock-btn:hover {
+    background: var(--color-hairline-soft);
+  }
+
+  .primary-dock-btn {
+    background: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .primary-dock-btn:hover {
+    background: var(--color-primary-hover);
+  }
+
+  .dock-divider {
+    width: 1px;
+    height: 20px;
+    background: var(--color-hairline);
+    margin: 0 var(--space-1);
+  }
+
+  .dock-timer-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .timer-digits {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    min-width: 46px;
+  }
+
+  .timer-btn {
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+  }
+
+  .timer-btn.secondary {
+    background: transparent;
+    color: var(--color-muted);
+  }
+
+  .timer-btn.secondary:hover {
+    color: var(--color-ink);
+  }
+
+  .dock-actions-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .icon-dock-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    color: var(--color-body);
+  }
+
+  .icon-dock-btn:hover {
+    color: var(--color-primary);
+    background: var(--color-primary-soft);
+  }
+
+  @media (max-width: 768px) {
+    .controls-bar-wrapper {
+      bottom: var(--space-3);
+      width: calc(100vw - var(--space-4));
+    }
+    .controls-dock {
+      width: 100%;
+      justify-content: space-between;
+      overflow-x: auto;
+      padding: var(--space-1-5) var(--space-2);
+    }
+    .dock-btn span {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,33 @@
+# NoSleep — Comprehensive Technical & Architectural Documentation
+
+## Executive Overview
+NoSleep (https://nosleeppage.com) is an ambient web application engineered to solve display sleep timeout frustrations without requiring native software installation. It combines the W3C Screen Wake Lock API, in-memory Web Audio API procedural synthesis, and adaptive Canvas 2D/WebGL rendering into a single, cohesive, client-side digital space.
+
+## Technical Architecture
+
+### 1. Screen Wake Lock API
+NoSleep uses `navigator.wakeLock.request('screen')`.
+- State Tracking: Tracks 'idle', 'requesting', 'active', 'released', 'unsupported', and 'error'.
+- Automatic Reacquisition: When the tab visibility state changes from hidden to visible (`document.visibilityState === 'visible'`), NoSleep automatically re-acquires the sentinel.
+- Security Model: Operates on HTTPS only. Does not require hardware permissions.
+
+### 2. Audio Engine (Web Audio API)
+- Pure Procedural Synthesis: Brown noise (integrated -6 dB/octave Brownian motion), filtered pink noise for rainfall, LFO-modulated lowpass noise for ocean surf, and harmonic oscillators for Rhodes electric piano chords.
+- Zero Bandwidth / Zero Clicks: Audio runs via in-memory Web Audio graphs with clickless looping and exponential crossfades.
+- 100% Offline Capable: Does not rely on streaming servers.
+
+### 3. Visual Engine (Adaptive Canvas 2D)
+- Breathing Orb: 4-7-8 breathing cadence with soft radial gradient and pulsing ripples.
+- Particle Universe: Interactive floating cosmic dust particles reacting to mouse and touch.
+- Orbital Atoms: Planetary orbits revolving in harmonic mathematical ratios.
+- Battery Conservation: Automatically halts all `requestAnimationFrame` loops when `document.hidden === true` (0% CPU/GPU overhead when minimized).
+
+### 4. Privacy & Data Handling
+- 100% Client-side.
+- Zero analytics cookies or tracking pixels.
+- Zero backend databases or serverless functions.
+- LocalStorage schema version 1 for user themes, master volumes, and custom presets.
+
+### 5. Multi-Language Support (i18n)
+- 7 Fully Localized Static Languages: English (en), Spanish (es), German (de), French (fr), Portuguese (pt), Japanese (ja), Simplified Chinese (zh).
+- Reciprocal hreflang tags on all routes with x-default pointing to root.

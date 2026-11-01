@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import AmbientCanvas from '../../components/AmbientCanvas.astro';
+import ControlsBar from '../../components/ControlsBar.astro';
+import SoundMixerModal from '../../components/SoundMixerModal.astro';
+import TimerModal from '../../components/TimerModal.astro';
+import Footer from '../../components/Footer.astro';
+import JsonLd from '../../components/JsonLd.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  'name': 'Warm Brown Noise Generator for ADHD & Deep Focus — NoSleep',
+  'url': 'https://nosleeppage.com/sounds/brown-noise/',
+  'description': 'Pure mathematical brown noise generator with screen wake lock and focus timer.',
+  'applicationCategory': 'UtilitiesApplication',
+};
+---
+
+<BaseLayout
+  title="Warm Brown Noise Generator for ADHD & Deep Focus — NoSleep"
+  description="Generate deep, low-frequency brown noise to silence internal chatter and block office noise. 100% private, free, and runs entirely in your browser."
+  canonicalPath="/sounds/brown-noise/"
+>
+  <JsonLd slot="head" schema={jsonLd} />
+
+  <main class="ambient-app-container">
+    <Header locale="en" />
+    <AmbientCanvas />
+    <ControlsBar locale="en" />
+    <SoundMixerModal locale="en" />
+    <TimerModal locale="en" />
+  </main>
+
+  <article class="content-container">
+    <h1>Warm Brown Noise Generator for Deep Cognitive Flow</h1>
+    <p class="lead">
+      Brown noise (also known as Brownian or red noise) decreases in energy by 6 dB per octave with increasing frequency.
+      This produces a soft, deep rumble similar to a gentle waterfall or distant airplane cabin, making it far warmer
+      and less harsh than white noise.
+    </p>
+
+    <section class="info-block">
+      <h2>Why Brown Noise Works for ADHD and Focus</h2>
+      <p>
+        Cognitive researchers have found that the steady, lower-register rumble of brown noise provides optimal sensory
+        grounding. It masks intrusive high-frequency noises without over-stimulating the brain, allowing individuals
+        with racing thoughts or ADHD to stay anchored in their work.
+      </p>
+    </section>
+  </article>
+
+  <Footer locale="en" />
+
+  <script src="../../scripts/app.ts"></script>
+</BaseLayout>
+
+<style>
+  .content-container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .lead {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--color-body);
+  }
+
+  .info-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .info-block h2 {
+    font-size: 1.35rem;
+  }
+
+  .info-block p {
+    line-height: 1.65;
+  }
+</style>

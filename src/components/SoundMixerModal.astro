@@ -1,0 +1,194 @@
+---
+import type { SupportedLocale } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const channels = [
+  { id: 'rain', label: t('sound.rain'), defaultVol: 0.75 },
+  { id: 'brown-noise', label: t('sound.brownNoise'), defaultVol: 0.35 },
+  { id: 'ocean', label: t('sound.ocean'), defaultVol: 0 },
+  { id: 'forest', label: t('sound.forest'), defaultVol: 0 },
+  { id: 'lofi', label: t('sound.lofi'), defaultVol: 0 },
+];
+---
+
+<div id="sound-mixer-modal" class="mixer-modal-backdrop" aria-hidden="true">
+  <div class="mixer-sheet glass-surface" role="dialog" aria-labelledby="mixer-title">
+    <div class="sheet-header">
+      <h2 id="mixer-title" class="sheet-title">{t('sound.mixer')}</h2>
+      <button id="close-mixer-btn" class="close-btn" aria-label="Close Mixer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Master Volume -->
+    <div class="master-volume-box">
+      <div class="channel-label-row">
+        <span>{t('sound.master')}</span>
+      </div>
+      <input
+        type="range"
+        id="mixer-master-slider"
+        min="0"
+        max="1"
+        step="0.01"
+        value="0.8"
+        class="volume-slider"
+        aria-label={t('sound.master')}
+      />
+    </div>
+
+    <div class="channels-divider"></div>
+
+    <!-- Channels List -->
+    <div class="channels-list">
+      {channels.map((ch) => (
+        <div class="channel-row">
+          <div class="channel-label-row">
+            <span class="channel-name">{ch.label}</span>
+            <button id={`channel-mute-${ch.id}`} class="mute-btn" aria-label={`Mute ${ch.label}`}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              </svg>
+            </button>
+          </div>
+          <input
+            type="range"
+            id={`channel-slider-${ch.id}`}
+            min="0"
+            max="1"
+            step="0.01"
+            value={ch.defaultVol}
+            class="volume-slider"
+            aria-label={ch.label}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .mixer-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: var(--color-surface-overlay);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+  }
+
+  .mixer-modal-backdrop.open {
+    display: flex;
+  }
+
+  .mixer-sheet {
+    width: 360px;
+    max-width: calc(100vw - var(--space-6));
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    box-shadow: var(--shadow-modal);
+  }
+
+  .sheet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sheet-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+
+  .close-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-full);
+    color: var(--color-muted);
+  }
+
+  .close-btn:hover {
+    color: var(--color-ink);
+  }
+
+  .channel-label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: var(--space-1);
+    color: var(--color-body);
+  }
+
+  .volume-slider {
+    width: 100%;
+    accent-color: var(--color-primary);
+    cursor: pointer;
+    height: 6px;
+    border-radius: var(--radius-full);
+  }
+
+  .channels-divider {
+    height: 1px;
+    background: var(--color-hairline);
+  }
+
+  .channels-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .mute-btn {
+    color: var(--color-muted);
+  }
+
+  .mute-btn:hover {
+    color: var(--color-primary);
+  }
+
+  .mute-btn.muted {
+    color: var(--color-status-error);
+    opacity: 0.6;
+  }
+</style>
+
+<script>
+  const modal = document.getElementById('sound-mixer-modal');
+  const openBtn = document.getElementById('open-mixer-btn');
+  const closeBtn = document.getElementById('close-mixer-btn');
+
+  openBtn?.addEventListener('click', () => {
+    modal?.classList.add('open');
+    modal?.setAttribute('aria-hidden', 'false');
+  });
+
+  closeBtn?.addEventListener('click', () => {
+    modal?.classList.remove('open');
+    modal?.setAttribute('aria-hidden', 'true');
+  });
+
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+  });
+</script>

@@ -1,0 +1,241 @@
+---
+import type { SupportedLocale } from '../i18n/ui';
+import { LOCALES } from '../i18n/ui';
+import { useTranslations, getLocalizedPath } from '../i18n/utils';
+
+interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const currentPath = Astro.url.pathname;
+---
+
+<header class="app-header glass-surface">
+  <div class="header-left">
+    <a href={locale === 'en' ? '/' : `/${locale}/`} class="brand-link" aria-label="NoSleep Home">
+      <span class="brand-dot"></span>
+      <span class="brand-name">NoSleep</span>
+    </a>
+
+    <!-- WakeLock Toggle Button -->
+    <button id="wakelock-toggle-btn" class="wakelock-pill" aria-label="Toggle Screen Wake Lock">
+      <span id="wakelock-status-badge" class="status-indicator" data-status="idle"></span>
+      <span id="wakelock-status-text" class="status-text">{t('wakelock.idle')}</span>
+    </button>
+  </div>
+
+  <div class="header-right">
+    <!-- Language Switcher -->
+    <div class="lang-selector">
+      <button class="lang-trigger mono" aria-label="Select Language">
+        {LOCALES[locale].label}
+      </button>
+      <div class="lang-dropdown glass-surface">
+        {Object.entries(LOCALES).map(([code, meta]) => (
+          <a
+            href={getLocalizedPath(currentPath, code as SupportedLocale)}
+            class={`lang-option ${code === locale ? 'active' : ''}`}
+          >
+            <span class="lang-code mono">{meta.label}</span>
+            <span class="lang-name">{meta.name}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button id="theme-toggle-btn" class="icon-btn" aria-label="Toggle Theme">
+      <svg class="theme-icon light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg class="theme-icon dark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<style>
+  .app-header {
+    position: absolute;
+    top: var(--space-4);
+    left: var(--space-4);
+    right: var(--space-4);
+    height: 48px;
+    padding: 0 var(--space-4);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 50;
+  }
+
+  .header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .brand-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--color-ink);
+  }
+
+  .brand-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-primary);
+  }
+
+  .wakelock-pill {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    background: var(--color-canvas-soft);
+    border: 1px solid var(--color-hairline);
+    font-size: 0.8rem;
+    font-weight: 500;
+    gap: var(--space-1-5);
+  }
+
+  .wakelock-pill.active {
+    border-color: var(--color-status-active);
+    background: rgba(31, 138, 101, 0.1);
+    color: var(--color-status-active);
+  }
+
+  .status-indicator {
+    width: 7px;
+    height: 7px;
+    border-radius: var(--radius-full);
+    background: var(--color-muted);
+  }
+
+  .status-indicator[data-status="active"] {
+    background: var(--color-status-active);
+    box-shadow: 0 0 6px var(--color-status-active-glow);
+  }
+
+  .status-indicator[data-status="requesting"] {
+    background: var(--color-status-warning);
+  }
+
+  .lang-selector {
+    position: relative;
+  }
+
+  .lang-trigger {
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-body);
+  }
+
+  .lang-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    right: 0;
+    width: 140px;
+    border-radius: var(--radius-md);
+    padding: var(--space-1);
+    flex-direction: column;
+  }
+
+  .lang-selector:hover .lang-dropdown,
+  .lang-selector:focus-within .lang-dropdown {
+    display: flex;
+  }
+
+  .lang-option {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1-5) var(--space-2);
+    border-radius: var(--radius-xs);
+    font-size: 0.8rem;
+    color: var(--color-body);
+  }
+
+  .lang-option:hover {
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+  }
+
+  .lang-option.active {
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .icon-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-full);
+    color: var(--color-body);
+  }
+
+  .icon-btn:hover {
+    color: var(--color-primary);
+  }
+
+  .theme-icon.dark {
+    display: none;
+  }
+
+  :global([data-theme="dark"]) .theme-icon.light {
+    display: none;
+  }
+
+  :global([data-theme="dark"]) .theme-icon.dark {
+    display: block;
+  }
+
+  @media (max-width: 640px) {
+    .app-header {
+      top: var(--space-2);
+      left: var(--space-2);
+      right: var(--space-2);
+      height: 44px;
+    }
+    .status-text {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Theme Toggle Handler
+  const toggleBtn = document.getElementById('theme-toggle-btn');
+  toggleBtn?.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const next = isDark ? 'light' : 'dark';
+    if (next === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('nosleep_theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('nosleep_theme', 'light');
+    }
+  });
+
+  // Load saved theme immediately to prevent flash
+  const savedTheme = localStorage.getItem('nosleep_theme');
+  if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+</script>

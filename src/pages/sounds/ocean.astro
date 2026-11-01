@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import AmbientCanvas from '../../components/AmbientCanvas.astro';
+import ControlsBar from '../../components/ControlsBar.astro';
+import SoundMixerModal from '../../components/SoundMixerModal.astro';
+import TimerModal from '../../components/TimerModal.astro';
+import Footer from '../../components/Footer.astro';
+import JsonLd from '../../components/JsonLd.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  'name': 'Ambient Ocean Waves & Surf Sounds — NoSleep',
+  'url': 'https://nosleeppage.com/sounds/ocean/',
+  'description': 'Rhythmic rolling ocean wave soundscape with screen wake lock and meditation guide.',
+  'applicationCategory': 'MultimediaApplication',
+};
+---
+
+<BaseLayout
+  title="Ocean Wave Sounds for Relaxation & Focus — NoSleep"
+  description="Listen to rhythmic rolling ocean surf and coastal wind. Keep your screen active for yoga, reading, or sleep with custom soundscapes."
+  canonicalPath="/sounds/ocean/"
+>
+  <JsonLd slot="head" schema={jsonLd} />
+
+  <main class="ambient-app-container">
+    <Header locale="en" />
+    <AmbientCanvas />
+    <ControlsBar locale="en" />
+    <SoundMixerModal locale="en" />
+    <TimerModal locale="en" />
+  </main>
+
+  <article class="content-container">
+    <h1>Calming Ocean Wave Sounds for Rest and Unwinding</h1>
+    <p class="lead">
+      Experience the soothing natural rhythm of coastal surf. Ocean waves provide an organic tempo that aligns with
+      human respiration, easing anxiety and encouraging restful sleep or relaxed reading.
+    </p>
+
+    <section class="info-block">
+      <h2>Natural Rhythm for Stress Relief</h2>
+      <p>
+        The predictable ebb and flow of ocean surf calms the sympathetic nervous system. Paired with our 4-7-8
+        Breathing Orb visualizer, NoSleep creates a sanctuary for mental decluttering.
+      </p>
+    </section>
+  </article>
+
+  <Footer locale="en" />
+
+  <script src="../../scripts/app.ts"></script>
+</BaseLayout>
+
+<style>
+  .content-container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .lead {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--color-body);
+  }
+
+  .info-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .info-block h2 {
+    font-size: 1.35rem;
+  }
+
+  .info-block p {
+    line-height: 1.65;
+  }
+</style>

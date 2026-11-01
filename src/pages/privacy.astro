@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Privacy Policy — NoSleep"
+  description="NoSleep collects zero personal data, sets no cookies, and processes all audio and timers locally in your browser."
+  canonicalPath="/privacy/"
+>
+  <Header locale="en" />
+
+  <main class="page-container">
+    <h1>Privacy Policy</h1>
+    <p class="effective-date">Last Updated: November 2026</p>
+
+    <section class="section">
+      <h2>1. Complete Client-Side Processing</h2>
+      <p>
+        NoSleep runs entirely in your client web browser. No audio inputs, keystrokes, personal identifiers,
+        or browsing histories are transmitted to any backend server.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>2. No Tracking Cookies</h2>
+      <p>
+        We do not use advertising cookies, third-party tracking pixels, or cross-site tracking scripts.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>3. Local Storage</h2>
+      <p>
+        Your chosen theme, sound mixer volumes, and custom presets are stored exclusively on your device using
+        standard HTML5 <code>localStorage</code>. This data never leaves your computer or phone.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>4. Screen Wake Lock Permission</h2>
+      <p>
+        The Screen Wake Lock API operates strictly on the active tab to keep your display illuminated. It does not
+        provide or request access to your camera, microphone, location, or private files.
+      </p>
+    </section>
+  </main>
+
+  <Footer locale="en" />
+</BaseLayout>
+
+<style>
+  .page-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: calc(var(--space-16) + 40px) var(--space-4) var(--space-12);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .effective-date {
+    font-size: 0.9rem;
+    color: var(--color-muted);
+  }
+
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .section h2 {
+    font-size: 1.25rem;
+  }
+
+  .section p {
+    color: var(--color-body);
+    line-height: 1.65;
+  }
+</style>

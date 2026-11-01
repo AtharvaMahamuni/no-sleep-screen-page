@@ -1,0 +1,137 @@
+---
+import type { SupportedLocale } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const faqs = [
+  {
+    q: 'How does NoSleep prevent my screen from turning off or locking?',
+    a: 'NoSleep uses the W3C Screen Wake Lock API supported natively in modern web browsers. When enabled, it informs your operating system that the active browser tab requires the display to remain active, preventing lock screens, dimming, and sleep without needing administrative privileges or native software downloads.'
+  },
+  {
+    q: 'Does screen wake lock work when I minimize or switch to another application?',
+    a: 'Per official browser security and battery protection specifications, the Screen Wake Lock API automatically suspends when a tab is minimized or hidden. However, NoSleep immediately and automatically re-acquires the wake lock as soon as the tab becomes visible again.'
+  },
+  {
+    q: 'Is NoSleep private and account-free?',
+    a: 'Yes. NoSleep requires no user accounts, sets no third-party tracking cookies, and runs 100% in your browser. All ambient sound synthesis, timers, and custom presets stay stored exclusively in your local browser storage.'
+  },
+  {
+    q: 'Why use NoSleep instead of YouTube 10-hour black screen videos?',
+    a: 'YouTube video streams consume excessive internet bandwidth (hundreds of megabytes), drain battery power through continuous video decoding, and frequently interrupt deep focus with loud video advertisements. NoSleep uses lightweight Canvas rendering and in-memory Web Audio synthesis, consuming over 95% less CPU and zero video bandwidth.'
+  },
+  {
+    q: 'Can I use NoSleep offline?',
+    a: 'Yes. NoSleep is built as a Progressive Web App (PWA) with a static service worker cache. Once loaded, the core shell, timer engine, and procedural sound generators work completely offline with zero active internet connection.'
+  }
+];
+---
+
+<section class="quick-answers-section" aria-labelledby="faq-heading">
+  <div class="faq-container">
+    <div class="faq-header">
+      <h2 id="faq-heading" class="faq-title">{t('seo.quickAnswers')}</h2>
+      <p class="faq-subtitle">Clear, factual information regarding browser screen wake locks and ambient focus.</p>
+    </div>
+
+    <div class="faq-list">
+      {faqs.map((item, index) => (
+        <details class="faq-item glass-surface" open={index === 0}>
+          <summary class="faq-question">
+            <span>{item.q}</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>{item.a}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .quick-answers-section {
+    position: relative;
+    z-index: 10;
+    padding: var(--space-12) var(--space-4);
+    background: var(--color-canvas);
+    border-top: 1px solid var(--color-hairline);
+  }
+
+  .faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .faq-header {
+    text-align: center;
+  }
+
+  .faq-title {
+    font-size: 1.8rem;
+    color: var(--color-ink);
+    margin-bottom: var(--space-2);
+  }
+
+  .faq-subtitle {
+    color: var(--color-muted);
+    font-size: 0.95rem;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .faq-item {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: all var(--duration-fast) var(--ease-out-quint);
+  }
+
+  .faq-question {
+    padding: var(--space-4);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-ink);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-icon {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    color: var(--color-primary);
+    transition: transform var(--duration-fast) var(--ease-out-quint);
+  }
+
+  details[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    padding: 0 var(--space-4) var(--space-4);
+    color: var(--color-body);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+</style>
