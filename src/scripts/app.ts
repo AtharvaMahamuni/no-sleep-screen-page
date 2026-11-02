@@ -500,10 +500,12 @@ export class NoSleepApp {
   }
 }
 
-// Auto-boot on DOM ready
+// Auto-boot on DOM ready with zero blocking on initial paint
 if (typeof window !== 'undefined') {
   window.addEventListener('DOMContentLoaded', () => {
-    const app = new NoSleepApp();
-    app.init();
+    requestAnimationFrame(() => {
+      const app = new NoSleepApp();
+      app.init();
+    });
   });
 }

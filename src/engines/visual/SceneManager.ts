@@ -40,7 +40,12 @@ export class SceneManager {
     document.addEventListener('visibilitychange', this.handleVisibility);
     this.canvas.addEventListener('pointermove', this.handlePointer, { passive: true });
 
-    this.handleResize();
+    // Schedule resize in animation frame to prevent synchronous forced reflow during boot
+    if (typeof requestAnimationFrame !== 'undefined') {
+      requestAnimationFrame(this.handleResize);
+    } else {
+      this.handleResize();
+    }
   }
 
   public registerScene(id: string, factory: () => IScene): void {
@@ -104,9 +109,9 @@ export class SceneManager {
   }
 
   private handleResize(): void {
-    const rect = this.canvas.getBoundingClientRect();
-    this.width = rect.width;
-    this.height = rect.height;
+    // Read viewport dimensions without triggering forced layout reflow
+    this.width = window.innerWidth || document.documentElement.clientWidth || 360;
+    this.height = window.innerHeight || document.documentElement.clientHeight || 640;
     this.dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     this.canvas.width = Math.floor(this.width * this.dpr);
@@ -130,10 +135,8 @@ export class SceneManager {
 
   private handlePointer(e: PointerEvent): void {
     if (!this.currentScene?.onPointerMove) return;
-    const rect = this.canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    this.currentScene.onPointerMove(x, y);
+    // Canvas is full viewport; direct client coordinates avoids getBoundingClientRect reflow
+    this.currentScene.onPointerMove(e.clientX, e.clientY);
   }
 
   private loop(timestamp: number): void {
