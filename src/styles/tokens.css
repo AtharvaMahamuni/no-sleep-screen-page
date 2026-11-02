@@ -38,6 +38,12 @@
   --color-status-warning: #c08532;
   --color-status-error: #cf2d56;
 
+  /* Interactive Active Button Surfaces (Eliminates harsh white glare in dark mode) */
+  --color-active-btn-bg: #26251e;
+  --color-active-btn-text: #ffffff;
+  --color-active-btn-sub: #cfcdc4;
+  --color-active-btn-border: #f54e00;
+
   /* Typography Stacks (Native Zero-Latency System Stacks per Cursor Design & Performance Rules) */
   --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
@@ -100,6 +106,12 @@
 
   --color-primary-soft: rgba(245, 78, 0, 0.15);
   --color-status-active-glow: rgba(31, 138, 101, 0.35);
+
+  /* Dark mode active buttons: Deep warm obsidian surface with crisp contrast and Cursor Orange accent */
+  --color-active-btn-bg: #22211d;
+  --color-active-btn-text: #f7f7f4;
+  --color-active-btn-sub: #b5b2a6;
+  --color-active-btn-border: #f54e00;
 
   --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.25);
   --shadow-floating: 0 16px 36px -6px rgba(0, 0, 0, 0.45);

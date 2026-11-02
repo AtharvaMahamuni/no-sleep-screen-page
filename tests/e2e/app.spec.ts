@@ -23,6 +23,27 @@ test.describe('NoSleep Core Application', () => {
     await expect(deepFocusPill).toHaveClass(/active/);
   });
 
+  test('clicking atmosphere button cycles through presets smoothly', async ({ page }) => {
+    await page.goto('/');
+    const atmosphereBtn = page.locator('#atmosphere-btn');
+    await expect(atmosphereBtn).toBeVisible();
+
+    // Default active is rainy-evening
+    await expect(page.locator('[data-preset-id="rainy-evening"]')).toHaveClass(/active/);
+
+    // Click Atmosphere -> cycles to deep-focus
+    await atmosphereBtn.click();
+    await expect(page.locator('[data-preset-id="deep-focus"]')).toHaveClass(/active/);
+
+    // Click Atmosphere -> cycles to ocean-calm
+    await atmosphereBtn.click();
+    await expect(page.locator('[data-preset-id="ocean-calm"]')).toHaveClass(/active/);
+
+    // Click Atmosphere -> cycles to cosmic-galaxy
+    await atmosphereBtn.click();
+    await expect(page.locator('[data-preset-id="cosmic-galaxy"]')).toHaveClass(/active/);
+  });
+
   test('sound mixer modal opens and closes', async ({ page }) => {
     await page.goto('/');
     const openBtn = page.locator('#open-mixer-btn');

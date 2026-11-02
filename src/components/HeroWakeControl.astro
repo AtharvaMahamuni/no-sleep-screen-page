@@ -161,10 +161,10 @@ const t = useTranslations(locale);
   }
 
   .hero-wake-button.active {
-    background: var(--color-ink);
-    border: 2px solid var(--color-primary);
-    color: #ffffff;
-    box-shadow: 0 8px 24px var(--color-primary-glow), 0 0 0 2px var(--color-primary);
+    background: var(--color-active-btn-bg);
+    border: 2px solid var(--color-active-btn-border);
+    color: var(--color-active-btn-text);
+    box-shadow: 0 8px 24px var(--color-primary-glow), 0 0 0 1px var(--color-active-btn-border);
   }
 
   .hero-button-icon-wrapper {
@@ -209,7 +209,7 @@ const t = useTranslations(locale);
   }
 
   .hero-wake-button.active .hero-btn-title {
-    color: #ffffff;
+    color: var(--color-active-btn-text);
   }
 
   .hero-btn-sub {
@@ -220,7 +220,7 @@ const t = useTranslations(locale);
   }
 
   .hero-wake-button.active .hero-btn-sub {
-    color: var(--color-canvas);
+    color: var(--color-active-btn-sub);
   }
 
   .hero-badges-group {

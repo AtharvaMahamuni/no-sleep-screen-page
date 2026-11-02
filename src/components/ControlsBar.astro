@@ -11,9 +11,9 @@ const t = useTranslations(locale);
 ---
 
 <div class="controls-bar-wrapper">
-  <!-- Presets Pill Bar (With clear label) -->
+  <!-- Presets Pill Bar (With interactive Atmosphere trigger) -->
   <div class="preset-pills-bar glass-surface" role="radiogroup" aria-label="Atmosphere Presets">
-    <div class="preset-label-tag">
+    <button id="atmosphere-btn" class="preset-label-tag" title="Click to cycle Atmosphere presets" aria-label="Cycle Atmosphere Presets">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="12" cy="12" r="5"></circle>
         <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -22,7 +22,8 @@ const t = useTranslations(locale);
         <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
       </svg>
       <span>{t('controls.atmosphere')}</span>
-    </div>
+      <span class="atmosphere-cycle-indicator" aria-hidden="true">↻</span>
+    </button>
 
     <div class="preset-buttons">
       <button class="preset-pill active" data-preset-id="rainy-evening" role="radio" aria-checked="true" aria-label="Rainy Evening Preset">
@@ -36,6 +37,10 @@ const t = useTranslations(locale);
       <button class="preset-pill" data-preset-id="ocean-calm" role="radio" aria-checked="false" aria-label="Ocean Calm Preset">
         <span class="preset-emoji">🌊</span>
         <span>{t('preset.oceanCalm')}</span>
+      </button>
+      <button class="preset-pill" data-preset-id="cosmic-galaxy" role="radio" aria-checked="false" aria-label="Cosmic Galaxy Preset">
+        <span class="preset-emoji">🌌</span>
+        <span>{t('preset.galaxy')}</span>
       </button>
     </div>
   </div>
@@ -163,12 +168,32 @@ const t = useTranslations(locale);
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    padding: 2px 8px;
+    padding: 3px 8px;
     font-size: 0.72rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--color-body);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    background: transparent;
+    transition: all var(--duration-fast) var(--ease-out-quint);
+  }
+
+  .preset-label-tag:hover {
+    color: var(--color-primary);
+    background: var(--color-primary-soft);
+  }
+
+  .atmosphere-cycle-indicator {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin-left: 2px;
+    transition: transform var(--duration-normal) var(--ease-out-quint);
+  }
+
+  .preset-label-tag:hover .atmosphere-cycle-indicator {
+    transform: rotate(180deg);
   }
 
   .preset-buttons {
@@ -194,9 +219,9 @@ const t = useTranslations(locale);
   }
 
   .preset-pill.active {
-    background: var(--color-ink);
-    color: #ffffff;
-    border: 1px solid var(--color-primary);
+    background: var(--color-active-btn-bg);
+    color: var(--color-active-btn-text);
+    border: 1px solid var(--color-active-btn-border);
     font-weight: 600;
   }
 
@@ -256,9 +281,9 @@ const t = useTranslations(locale);
   }
 
   .primary-dock-btn.playing {
-    background: var(--color-ink);
-    color: #ffffff;
-    border-color: var(--color-primary);
+    background: var(--color-active-btn-bg);
+    color: var(--color-active-btn-text);
+    border-color: var(--color-active-btn-border);
   }
 
   .dock-badge {
@@ -325,16 +350,16 @@ const t = useTranslations(locale);
   }
 
   .timer-btn.primary {
-    background: var(--color-ink);
-    color: #ffffff;
-    border-color: var(--color-ink);
+    background: var(--color-active-btn-bg);
+    color: var(--color-active-btn-text);
+    border: 1px solid var(--color-active-btn-border);
     font-weight: 600;
   }
 
   .timer-btn.primary:hover {
-    background: var(--color-ink);
-    border-color: var(--color-primary);
-    color: #ffffff;
+    background: var(--color-active-btn-bg);
+    border-color: var(--color-primary-hover);
+    color: var(--color-active-btn-text);
   }
 
   .timer-btn.options {

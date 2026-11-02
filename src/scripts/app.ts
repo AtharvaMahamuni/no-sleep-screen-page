@@ -1,6 +1,9 @@
 import { WakeLockManager } from '../engines/session/WakeLockManager';
 import { TimerManager } from '../engines/session/TimerManager';
 import { SceneManager } from '../engines/visual/SceneManager';
+import { RainRipplesScene } from '../engines/visual/scenes/RainRipples';
+import { OceanHarmonicsScene } from '../engines/visual/scenes/OceanHarmonics';
+import { Galaxy3DScene } from '../engines/visual/scenes/Galaxy3D';
 import { BreathingOrbScene } from '../engines/visual/scenes/BreathingOrb';
 import { ParticleUniverseScene } from '../engines/visual/scenes/ParticleUniverse';
 import { OrbitalAtomsScene } from '../engines/visual/scenes/OrbitalAtoms';
@@ -21,9 +24,16 @@ export class NoSleepApp {
     const canvas = document.getElementById('ambient-canvas') as HTMLCanvasElement;
     if (canvas) {
       this.sceneManager = new SceneManager(canvas);
-      this.sceneManager.registerScene('breathing-orb', () => new BreathingOrbScene());
-      this.sceneManager.registerScene('particles', () => new ParticleUniverseScene());
+      this.sceneManager.registerScene('rain-ripples', () => new RainRipplesScene());
+      this.sceneManager.registerScene('ocean-harmonics', () => new OceanHarmonicsScene());
+      this.sceneManager.registerScene('galaxy', () => new Galaxy3DScene());
       this.sceneManager.registerScene('orbit', () => new OrbitalAtomsScene());
+      this.sceneManager.registerScene('particles', () => new ParticleUniverseScene());
+      this.sceneManager.registerScene('breathing-orb', () => new BreathingOrbScene());
+
+      // Backwards-compatible aliases for topic routes
+      this.sceneManager.registerScene('rain', () => new RainRipplesScene());
+      this.sceneManager.registerScene('ocean', () => new OceanHarmonicsScene());
     }
 
     // 2. Apply saved theme & check URL hash for shared presets
@@ -336,6 +346,21 @@ export class NoSleepApp {
         });
       });
     });
+
+    // Make Atmosphere button interactive to cycle presets on click
+    const atmosphereBtn = document.getElementById('atmosphere-btn');
+    atmosphereBtn?.addEventListener('click', () => {
+      this.cycleNextPreset();
+    });
+  }
+
+  private cycleNextPreset(): void {
+    const presetPills = Array.from(document.querySelectorAll<HTMLButtonElement>('.preset-pill[data-preset-id]'));
+    if (!presetPills.length) return;
+
+    const currentIdx = presetPills.findIndex(p => p.classList.contains('active'));
+    const nextIdx = (currentIdx + 1) % presetPills.length;
+    presetPills[nextIdx].click();
   }
 
   private bindFullscreenAndPiP(): void {
@@ -375,9 +400,12 @@ export class NoSleepApp {
       }
     };
 
-    // Fullscreen state listener
+    // Fullscreen state listener (guarantees zero side scrollbars across all viewports)
     document.addEventListener('fullscreenchange', () => {
-      if (document.fullscreenElement) {
+      const isFs = !!document.fullscreenElement;
+      document.documentElement.classList.toggle('is-fullscreen', isFs);
+
+      if (isFs) {
         resetIdleTimer();
       } else {
         if (idleTimeoutId !== null) {

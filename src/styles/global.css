@@ -47,6 +47,41 @@ body {
   justify-content: space-between;
 }
 
+/* Fullscreen Presentation State: Zero side scrollbars & immersive viewport */
+:fullscreen,
+:fullscreen body,
+html:fullscreen,
+body:fullscreen,
+html.is-fullscreen,
+html.is-fullscreen body {
+  overflow: hidden !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+:fullscreen::-webkit-scrollbar,
+:fullscreen body::-webkit-scrollbar,
+html:fullscreen::-webkit-scrollbar,
+body:fullscreen::-webkit-scrollbar,
+html.is-fullscreen::-webkit-scrollbar,
+html.is-fullscreen body::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+:fullscreen .quick-answers-section,
+:fullscreen .app-footer,
+:fullscreen .article-content-container,
+html:fullscreen .quick-answers-section,
+html:fullscreen .app-footer,
+html:fullscreen .article-content-container,
+html.is-fullscreen .quick-answers-section,
+html.is-fullscreen .app-footer,
+html.is-fullscreen .article-content-container {
+  display: none !important;
+}
+
 /* Fullscreen Ambient Idle Overlays Auto-Hide */
 .ambient-idle-hidden {
   cursor: none !important;

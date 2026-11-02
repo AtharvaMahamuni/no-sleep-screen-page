@@ -50,6 +50,7 @@ export const UI_STRINGS: Record<SupportedLocale, Record<string, string>> = {
     'preset.rainy': 'Rainy Evening',
     'preset.deepFocus': 'Deep Focus',
     'preset.oceanCalm': 'Ocean Calm',
+    'preset.galaxy': 'Cosmic Galaxy',
 
     'sound.rain': 'Gentle Rain',
     'sound.brownNoise': 'Brown Noise',
@@ -130,6 +131,7 @@ export const UI_STRINGS: Record<SupportedLocale, Record<string, string>> = {
     'preset.rainy': 'Noche Lluviosa',
     'preset.deepFocus': 'Enfoque Profundo',
     'preset.oceanCalm': 'Calma Marina',
+    'preset.galaxy': 'Galaxia Cósmica',
 
     'sound.rain': 'Lluvia Suave',
     'sound.brownNoise': 'Ruido Marrón',
@@ -210,6 +212,7 @@ export const UI_STRINGS: Record<SupportedLocale, Record<string, string>> = {
     'preset.rainy': 'Regenabend',
     'preset.deepFocus': 'Tiefer Fokus',
     'preset.oceanCalm': 'Meeresstille',
+    'preset.galaxy': 'Kosmische Galaxie',
 
     'sound.rain': 'Sanfter Regen',
     'sound.brownNoise': 'Braunes Rauschen',
@@ -290,6 +293,7 @@ export const UI_STRINGS: Record<SupportedLocale, Record<string, string>> = {
     'preset.rainy': 'Soir de Pluie',
     'preset.deepFocus': 'Concentration Profonde',
     'preset.oceanCalm': 'Calme Océanique',
+    'preset.galaxy': 'Galaxie Cosmique',
 
     'sound.rain': 'Pluie Douce',
     'sound.brownNoise': 'Bruit Brun',
@@ -370,6 +374,7 @@ export const UI_STRINGS: Record<SupportedLocale, Record<string, string>> = {
     'preset.rainy': 'Noite Chuvosa',
     'preset.deepFocus': 'Foco Profundo',
     'preset.oceanCalm': 'Calmaria do Oceano',
+    'preset.galaxy': 'Galáxia Cósmica',
 
     'sound.rain': 'Chuva Suave',
     'sound.brownNoise': 'Ruído Marrom',
@@ -450,6 +455,7 @@ export const UI_STRINGS: Record<SupportedLocale, Record<string, string>> = {
     'preset.rainy': '雨の夜',
     'preset.deepFocus': '深い集中',
     'preset.oceanCalm': '穏やかな海',
+    'preset.galaxy': 'コズミック・ギャラクシー',
 
     'sound.rain': '穏やかな雨',
     'sound.brownNoise': 'ブラウンノイズ',
@@ -530,6 +536,7 @@ export const UI_STRINGS: Record<SupportedLocale, Record<string, string>> = {
     'preset.rainy': '雨夜微风',
     'preset.deepFocus': '深度专注',
     'preset.oceanCalm': '静谧海洋',
+    'preset.galaxy': '宇宙星系',
 
     'sound.rain': '细雨淅沥',
     'sound.brownNoise': '棕色噪音',
