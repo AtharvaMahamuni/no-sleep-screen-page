@@ -18,5 +18,11 @@ NoSleep (https://nosleeppage.com) is an open web utility using the W3C Screen Wa
 - [Terms of Service](https://nosleeppage.com/terms/): Terms of service.
 - [Audio Licensing Credits](https://nosleeppage.com/audio-credits/): Procedural synthesis and licensing credits.
 
+## Specialized Workflows & Solutions
+- [Prevent Screen Sleep](https://nosleeppage.com/prevent-screen-sleep/): Stop display timeouts and auto-lock across Windows, Mac, iPad, and Android without software downloads.
+- [Keep Awake for AI Agents](https://nosleeppage.com/for/ai-agents/): Prevent OS App Nap and WebSocket disconnects while running Claude Code, Cursor, Devin, and Ollama.
+- [Work Laptops (Zero Admin)](https://nosleeppage.com/for/work-laptops/): Screen wake lock utility compliant with corporate IT policy and GPO screensaver restrictions.
+- [Developer Workstations](https://nosleeppage.com/for/developers/): Keep machines awake during long Docker builds, test suites, and database migrations.
+
 ## Optional
 - [Full Technical Specification](https://nosleeppage.com/llms-full.txt): Complete architecture, browser API implementations, and audio synthesis details.

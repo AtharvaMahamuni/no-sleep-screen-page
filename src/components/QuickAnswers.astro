@@ -35,6 +35,10 @@ const faqs = [
     a: 'YouTube video streams consume excessive internet bandwidth (hundreds of megabytes), drain battery power through continuous video decoding, and frequently interrupt deep focus with loud video advertisements. NoSleep uses lightweight Canvas rendering and in-memory Web Audio synthesis, consuming over 95% less CPU and zero video bandwidth.'
   },
   {
+    q: 'How do I keep my computer awake while running AI agents like Claude Code, Cursor, or long terminal scripts?',
+    a: 'When your screen sleeps, macOS and Windows suspend background threads and drop WebSocket connections, causing autonomous coding agents (Claude Code, Cursor, Devin) or local LLMs (Ollama) to terminate. Leaving NoSleep active in a browser tab prevents the OS from entering sleep or App Nap, ensuring your background tasks complete without installing CLI tools.'
+  },
+  {
     q: 'Can I use NoSleep offline?',
     a: 'Yes. NoSleep is built as a Progressive Web App (PWA) with a static service worker cache. Once loaded, the core shell, timer engine, and procedural sound generators work completely offline with zero active internet connection.'
   }

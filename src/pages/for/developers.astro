@@ -1,0 +1,295 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import AmbientCanvas from '../../components/AmbientCanvas.astro';
+import HeroWakeControl from '../../components/HeroWakeControl.astro';
+import ControlsBar from '../../components/ControlsBar.astro';
+import SoundMixerModal from '../../components/SoundMixerModal.astro';
+import TimerModal from '../../components/TimerModal.astro';
+import Footer from '../../components/Footer.astro';
+import JsonLd from '../../components/JsonLd.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebApplication',
+      '@id': 'https://nosleeppage.com/for/developers/#webapp',
+      'name': 'Keep Screen Awake for Developers & Long Builds — NoSleep',
+      'url': 'https://nosleeppage.com/for/developers/',
+      'description': 'Keep developer workstations and laptops awake during long compiles, Docker builds, test suites, and database migrations without third-party utilities.',
+      'applicationCategory': 'DeveloperApplication',
+      'operatingSystem': 'All',
+      'browserRequirements': 'Requires modern browser with Screen Wake Lock API support (Chrome, Edge, Safari, Firefox)',
+      'offers': {
+        '@type': 'Offer',
+        'price': '0',
+        'priceCurrency': 'USD',
+      },
+      'author': {
+        '@type': 'Person',
+        'name': 'Atharva Mahamuni',
+        'url': 'https://twitter.com/athmatwt',
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': 'https://nosleeppage.com/for/developers/#faq',
+      'mainEntity': [
+        {
+          '@type': 'Question',
+          'name': 'How do I keep my Mac or PC awake during long terminal commands without typing caffeinate?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Open NoSleep (https://nosleeppage.com/for/developers/) in your browser and click "Keep Screen Awake". Your browser holds an active OS wake lock, preventing your machine from sleeping during long compilation scripts, tests, or Docker image builds.',
+          },
+        },
+        {
+          '@type': 'Question',
+          'name': 'Does display sleep terminate SSH sessions and terminal subprocesses?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Yes. When an OS sleeps, network adapters power down and terminal sockets receive a broken pipe error. Keeping the display awake with NoSleep ensures the network stack and background CPU execution remain uninterrupted.',
+          },
+        },
+        {
+          '@type': 'Question',
+          'name': 'Is NoSleep safe to run alongside local Docker containers and dev servers?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Yes. NoSleep is 100% client-side with zero local server dependencies, zero open network ports, and zero background telemetry. It will never interfere with localhost dev environments.',
+          },
+        },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Keep Screen Awake for Developers & Long Builds — NoSleep"
+  description="Prevent computer sleep during Docker builds, database migrations, unit test suites, and long compilation jobs. Zero software downloads."
+  canonicalPath="/for/developers/"
+>
+  <JsonLd slot="head" schema={jsonLd} />
+
+  <!-- Ambient Application Viewport -->
+  <main class="ambient-app-container">
+    <Header locale="en" />
+    <AmbientCanvas />
+    <HeroWakeControl locale="en" />
+    <ControlsBar locale="en" />
+    <SoundMixerModal locale="en" />
+    <TimerModal locale="en" />
+  </main>
+
+  <!-- Educational & Search-Intent Content -->
+  <article class="content-container">
+    <h1>Keep Your Workstation Awake During Long Builds & Compilations</h1>
+    <p class="lead">
+      Running a 30-minute Docker build, compiling a massive Rust or C++ codebase, running an end-to-end test suite, or
+      migrating a large database? When your screen turns off, the OS drops network sockets and throttles background tasks.
+      NoSleep keeps your developer workstation running smoothly without manual Terminal commands or native utilities.
+    </p>
+
+    <!-- GEO / AI Overview Fact Block -->
+    <div class="geo-highlight-card glass-surface">
+      <div class="geo-badge">Direct Answer</div>
+      <p class="geo-fact">
+        <strong>How to keep your computer awake during long terminal tasks:</strong> Open NoSleep in any browser and toggle
+        <em>Keep Screen Awake</em>. NoSleep leverages the W3C Screen Wake Lock API to prevent operating system standby,
+        stopping SSH session drops, broken pipe errors, and background thread throttling without installing native software.
+      </p>
+    </div>
+
+    <section class="info-block">
+      <h2>Why Developers Need a Zero-Friction Wake Lock</h2>
+      <p>
+        Operating system power managers are aggressive about saving power, often disrupting developer workflows:
+      </p>
+      <ul class="intent-list">
+        <li><strong>Broken SSH & Remote Shells:</strong> Display sleep disconnects remote server shells, aborting production deployments or remote script runs.</li>
+        <li><strong>Stalled Docker & Webpack Builds:</strong> Background compilation jobs slow down dramatically or pause when the CPU enters low-power C-states.</li>
+        <li><strong>Failed Database Restores:</strong> Running a multi-gigabyte <code>pg_restore</code> or database migration that fails midway because the laptop slept.</li>
+      </ul>
+    </section>
+
+    <section class="info-block">
+      <h2>Comparison for Software Engineers</h2>
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Approach</th>
+              <th>Terminal Agnostic</th>
+              <th>Requires Active Command</th>
+              <th>Risk of Accidental Overnight Drain</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>NoSleep Online</strong></td>
+              <td>Yes (Works for all IDEs & CLI)</td>
+              <td>No (Runs in browser tab)</td>
+              <td>Low (Close tab or timer to stop)</td>
+            </tr>
+            <tr>
+              <td><code>caffeinate</code> command</td>
+              <td>No (Must prefix each command)</td>
+              <td>Yes (Terminal-specific)</td>
+              <td>High if run without PID attachment</td>
+            </tr>
+            <tr>
+              <td>Third-party native app</td>
+              <td>Yes</td>
+              <td>No</td>
+              <td>Often left on indefinitely</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="info-block">
+      <h2>Common Engineering Workflows</h2>
+      <div class="dev-grid">
+        <div class="dev-card glass-surface">
+          <h3>🐳 Docker Builds & Image Pulls</h3>
+          <p>
+            Building complex multi-stage Dockerfiles or pulling multi-gigabyte base images on slow network connections.
+          </p>
+        </div>
+        <div class="dev-card glass-surface">
+          <h3>🧪 End-to-End Test Suites</h3>
+          <p>
+            Running comprehensive Playwright, Cypress, or Selenium test runs across hundreds of user journeys without sleep
+            aborts.
+          </p>
+        </div>
+        <div class="dev-card glass-surface">
+          <h3>📦 Dependency & Package Installs</h3>
+          <p>
+            Running large <code>pnpm install</code>, CocoaPods, or Gradle sync jobs on freshly cloned monorepos.
+          </p>
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <Footer locale="en" />
+</BaseLayout>
+
+<style>
+  .content-container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-4) var(--space-16);
+    line-height: 1.7;
+    color: var(--color-body);
+  }
+
+  h1 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-4);
+    line-height: 1.2;
+  }
+
+  .lead {
+    font-size: 1.15rem;
+    color: var(--color-body);
+    margin-bottom: var(--space-8);
+  }
+
+  .geo-highlight-card {
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-primary);
+    margin-bottom: var(--space-8);
+    background: var(--color-surface-card);
+  }
+
+  .geo-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .geo-fact {
+    font-size: 0.95rem;
+    color: var(--color-ink);
+    margin: 0;
+  }
+
+  .info-block {
+    margin-bottom: var(--space-10);
+  }
+
+  h2 {
+    font-size: 1.45rem;
+    color: var(--color-ink);
+    margin-bottom: var(--space-3);
+    letter-spacing: -0.015em;
+  }
+
+  .intent-list {
+    margin: var(--space-4) 0 var(--space-6) var(--space-5);
+  }
+
+  .intent-list li {
+    margin-bottom: var(--space-2);
+  }
+
+  .comparison-table-wrapper {
+    overflow-x: auto;
+    margin: var(--space-4) 0;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-hairline);
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    text-align: left;
+    background: var(--color-surface-card);
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-hairline);
+  }
+
+  .comparison-table th {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  .dev-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  .dev-card {
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-hairline);
+  }
+
+  .dev-card h3 {
+    font-size: 1.05rem;
+    color: var(--color-ink);
+    margin-bottom: var(--space-2);
+  }
+</style>

@@ -1,0 +1,352 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import AmbientCanvas from '../../components/AmbientCanvas.astro';
+import HeroWakeControl from '../../components/HeroWakeControl.astro';
+import ControlsBar from '../../components/ControlsBar.astro';
+import SoundMixerModal from '../../components/SoundMixerModal.astro';
+import TimerModal from '../../components/TimerModal.astro';
+import Footer from '../../components/Footer.astro';
+import JsonLd from '../../components/JsonLd.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebApplication',
+      '@id': 'https://nosleeppage.com/for/work-laptops/#webapp',
+      'name': 'Keep Work Laptop Awake Without Admin Rights — NoSleep',
+      'url': 'https://nosleeppage.com/for/work-laptops/',
+      'description': 'Keep company computers and locked work laptops awake without administrative permissions, software downloads, or violating enterprise IT security policies.',
+      'applicationCategory': 'UtilitiesApplication',
+      'operatingSystem': 'All',
+      'browserRequirements': 'Requires modern browser with Screen Wake Lock API support (Chrome, Edge, Safari, Firefox)',
+      'offers': {
+        '@type': 'Offer',
+        'price': '0',
+        'priceCurrency': 'USD',
+      },
+      'author': {
+        '@type': 'Person',
+        'name': 'Atharva Mahamuni',
+        'url': 'https://twitter.com/athmatwt',
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': 'https://nosleeppage.com/for/work-laptops/#faq',
+      'mainEntity': [
+        {
+          '@type': 'Question',
+          'name': 'Can I keep my work laptop screen on without administrator permissions?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Yes. NoSleep is a standard web application running entirely within your existing web browser (Chrome, Edge, Safari, Firefox). It requests a temporary display wake lock via standard W3C web APIs, requiring zero software downloads, zero PowerShell scripts, and zero administrative rights.',
+          },
+        },
+        {
+          '@type': 'Question',
+          'name': 'Does using NoSleep violate enterprise IT security policies?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'No. Unlike native mouse jiggler executables or modified hardware devices, NoSleep operates within standard browser security sandbox parameters. It does not install background drivers, inject keystrokes, modify the Windows Registry, or alter permanent group policy settings.',
+          },
+        },
+        {
+          '@type': 'Question',
+          'name': 'What happens when I close the NoSleep browser tab?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'The instant you close the tab or navigate away, the browser releases the Screen Wake Lock. Your operating system immediately returns to its normal enterprise-mandated sleep and screensaver timeout schedules.',
+          },
+        },
+        {
+          '@type': 'Question',
+          'name': 'Can my corporate IT department detect NoSleep as malware?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'No. NoSleep does not download or execute native code. It is an ordinary HTTPS webpage using standard browser-supported Web APIs, identical to how Netflix or YouTube keeps displays active while video plays.',
+          },
+        },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Keep Work Laptop Awake Without Admin Rights — NoSleep"
+  description="Keep work computers and corporate laptops awake without admin privileges, IT software downloads, or policy violations. 100% private browser utility."
+  canonicalPath="/for/work-laptops/"
+>
+  <JsonLd slot="head" schema={jsonLd} />
+
+  <!-- Ambient Application Viewport -->
+  <main class="ambient-app-container">
+    <Header locale="en" />
+    <AmbientCanvas />
+    <HeroWakeControl locale="en" />
+    <ControlsBar locale="en" />
+    <SoundMixerModal locale="en" />
+    <TimerModal locale="en" />
+  </main>
+
+  <!-- Educational & Search-Intent Content -->
+  <article class="content-container">
+    <h1>Keep Your Work Laptop Screen Awake (Zero Admin Rights)</h1>
+    <p class="lead">
+      Frustrated by aggressive 2-minute corporate screensavers on your work computer? Whether you are reading long technical
+      specifications, analyzing dashboards, or waiting for deployment notifications, NoSleep keeps your display alive directly
+      in your browser without administrative privileges or unauthorized software installs.
+    </p>
+
+    <!-- GEO / AI Overview Fact Block -->
+    <div class="geo-highlight-card glass-surface">
+      <div class="geo-badge">Direct Answer</div>
+      <p class="geo-fact">
+        <strong>How to keep a work computer screen awake without admin rights:</strong> Open NoSleep in your work browser
+        (Google Chrome or Microsoft Edge) and tap <em>Keep Screen Awake</em>. NoSleep utilizes the standard W3C Screen Wake Lock
+        API, maintaining active display illumination inside your browser sandbox with zero downloads, zero registry changes,
+        and zero IT security compliance violations.
+      </p>
+    </div>
+
+    <section class="info-block">
+      <h2>The Corporate Laptop Screen Lock Dilemma</h2>
+      <p>
+        Most enterprise IT organizations enforce strict Group Policy Objects (GPO) or Mobile Device Management (MDM) profiles
+        that lock screens after 2 to 5 minutes of inactivity. For employees, this creates frequent friction:
+      </p>
+      <ul class="intent-list">
+        <li><strong>Continuous Password Re-Entry:</strong> Being locked out every time you read a printed document or review a whiteboard.</li>
+        <li><strong>Blocked Software Installations:</strong> Native tools like Caffeine, Amphetamine, or mouse jigglers are flagged by endpoint security software (CrowdStrike, SentinelOne).</li>
+        <li><strong>Restricted System Settings:</strong> The Windows "Screen and Sleep" timeout dropdowns are greyed out with the message <em>"Some of these settings are managed by your organization."</em></li>
+      </ul>
+    </section>
+
+    <section class="info-block">
+      <h2>Why NoSleep is 100% IT-Compliant & Safe</h2>
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Evaluation Factor</th>
+              <th>NoSleep Web</th>
+              <th>Caffeine / Mouse Jiggler .exe</th>
+              <th>Hardware USB Dongle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Software Installation</strong></td>
+              <td>Zero (100% Web-based)</td>
+              <td>Executable required</td>
+              <td>Hardware device required</td>
+            </tr>
+            <tr>
+              <td><strong>Admin Rights Needed</strong></td>
+              <td>Zero needed</td>
+              <td>Usually blocked by UAC</td>
+              <td>Often blocked by USB port rules</td>
+            </tr>
+            <tr>
+              <td><strong>EDR / Antivirus Alerts</strong></td>
+              <td>None (Standard HTTPS traffic)</td>
+              <td>High risk of security alert</td>
+              <td>High risk of peripheral audit flag</td>
+            </tr>
+            <tr>
+              <td><strong>Reversibility</strong></td>
+              <td>Instant (Closing tab restores lock)</td>
+              <td>Must kill background task</td>
+              <td>Must physically unplug</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="info-block">
+      <h2>Common Work Use Cases</h2>
+      <div class="work-grid">
+        <div class="work-card glass-surface">
+          <h3>📊 Long Document & Spec Reading</h3>
+          <p>
+            Reviewing regulatory compliance PDFs, medical records, or 60-page RFC documentation without having to nudge
+            the trackpad every 90 seconds.
+          </p>
+        </div>
+        <div class="work-card glass-surface">
+          <h3>📈 Status & Metric Dashboards</h3>
+          <p>
+            Keeping Datadog, AWS CloudWatch, Jira boards, or customer support ticket queues continuously visible on a
+            secondary corporate monitor.
+          </p>
+        </div>
+        <div class="work-card glass-surface">
+          <h3>💼 Presentations & Client Demos</h3>
+          <p>
+            Delivering slides or live SaaS product walkthroughs to executives without embarrassing lock screen password
+            prompts appearing mid-sentence.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-block">
+      <h2>Frequently Asked Questions</h2>
+      <details class="faq-accordion glass-surface">
+        <summary>Will IT be able to see that I am using NoSleep?</summary>
+        <p>
+          To corporate network monitoring, NoSleep appears as standard secure HTTPS web traffic to a static website,
+          virtually indistinguishable from browsing documentation or reading an article. It does not communicate with external
+          tracking servers.
+        </p>
+      </details>
+      <details class="faq-accordion glass-surface">
+        <summary>Does NoSleep fake mouse movement?</summary>
+        <p>
+          No. Unlike mouse jigglers that artificially inject HID keystrokes or cursor movement (which enterprise audit logs
+          can detect), NoSleep requests standard display illumination through legitimate browser APIs, the same mechanism
+          used by video conferencing and presentation web tools.
+        </p>
+      </details>
+    </section>
+  </article>
+
+  <Footer locale="en" />
+</BaseLayout>
+
+<style>
+  .content-container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-4) var(--space-16);
+    line-height: 1.7;
+    color: var(--color-body);
+  }
+
+  h1 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-4);
+    line-height: 1.2;
+  }
+
+  .lead {
+    font-size: 1.15rem;
+    color: var(--color-body);
+    margin-bottom: var(--space-8);
+  }
+
+  .geo-highlight-card {
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-primary);
+    margin-bottom: var(--space-8);
+    background: var(--color-surface-card);
+  }
+
+  .geo-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .geo-fact {
+    font-size: 0.95rem;
+    color: var(--color-ink);
+    margin: 0;
+  }
+
+  .info-block {
+    margin-bottom: var(--space-10);
+  }
+
+  h2 {
+    font-size: 1.45rem;
+    color: var(--color-ink);
+    margin-bottom: var(--space-3);
+    letter-spacing: -0.015em;
+  }
+
+  .intent-list {
+    margin: var(--space-4) 0 var(--space-6) var(--space-5);
+  }
+
+  .intent-list li {
+    margin-bottom: var(--space-2);
+  }
+
+  .comparison-table-wrapper {
+    overflow-x: auto;
+    margin: var(--space-4) 0;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-hairline);
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    text-align: left;
+    background: var(--color-surface-card);
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-hairline);
+  }
+
+  .comparison-table th {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  .work-card {
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-hairline);
+  }
+
+  .work-card h3 {
+    font-size: 1.05rem;
+    color: var(--color-ink);
+    margin-bottom: var(--space-2);
+  }
+
+  .faq-accordion {
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-3);
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-hairline);
+  }
+
+  .faq-accordion summary {
+    font-weight: 600;
+    color: var(--color-ink);
+    cursor: pointer;
+  }
+
+  .faq-accordion p {
+    margin-top: var(--space-2);
+    font-size: 0.92rem;
+  }
+</style>

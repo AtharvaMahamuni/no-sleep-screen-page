@@ -76,7 +76,11 @@ test.describe('NoSleep Core Application', () => {
   test('zen mode keyboard toggle hides overlays on idle', async ({ page }) => {
     await page.goto('/');
     const container = page.locator('.ambient-app-container');
+    await expect(page.locator('#ambient-canvas')).toBeVisible();
     await expect(container).not.toHaveClass(/ambient-idle-hidden/);
+
+    // Focus document to ensure keydown delivers reliably under parallel workers
+    await page.locator('body').click();
 
     // Press Z to trigger Zen mode
     await page.keyboard.press('z');
@@ -96,6 +100,16 @@ test.describe('NoSleep Core Application', () => {
     // No Screen Off
     await page.goto('/no-screen-off/');
     await expect(page).toHaveTitle(/No Screen Off/);
+    await expect(page.locator('#hero-wakelock-toggle-btn')).toBeVisible();
+
+    // Prevent Screen Sleep
+    await page.goto('/prevent-screen-sleep/');
+    await expect(page).toHaveTitle(/Prevent Screen Sleep/);
+    await expect(page.locator('#hero-wakelock-toggle-btn')).toBeVisible();
+
+    // For AI Agents
+    await page.goto('/for/ai-agents/');
+    await expect(page).toHaveTitle(/AI Agents/);
     await expect(page.locator('#hero-wakelock-toggle-btn')).toBeVisible();
   });
 

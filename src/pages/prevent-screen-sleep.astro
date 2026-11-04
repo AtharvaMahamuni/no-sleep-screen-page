@@ -1,0 +1,384 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import AmbientCanvas from '../components/AmbientCanvas.astro';
+import HeroWakeControl from '../components/HeroWakeControl.astro';
+import ControlsBar from '../components/ControlsBar.astro';
+import SoundMixerModal from '../components/SoundMixerModal.astro';
+import TimerModal from '../components/TimerModal.astro';
+import Footer from '../components/Footer.astro';
+import JsonLd from '../components/JsonLd.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebApplication',
+      '@id': 'https://nosleeppage.com/prevent-screen-sleep/#webapp',
+      'name': 'Prevent Screen Sleep Online — NoSleep',
+      'url': 'https://nosleeppage.com/prevent-screen-sleep/',
+      'description': 'Prevent screen sleep and stop display timeouts online with zero software downloads. 100% private, free web utility using the W3C Screen Wake Lock API.',
+      'applicationCategory': 'UtilitiesApplication',
+      'operatingSystem': 'All',
+      'browserRequirements': 'Requires modern browser with Screen Wake Lock API support (Chrome, Edge, Safari, Firefox)',
+      'offers': {
+        '@type': 'Offer',
+        'price': '0',
+        'priceCurrency': 'USD',
+      },
+      'author': {
+        '@type': 'Person',
+        'name': 'Atharva Mahamuni',
+        'url': 'https://twitter.com/athmatwt',
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': 'https://nosleeppage.com/prevent-screen-sleep/#faq',
+      'mainEntity': [
+        {
+          '@type': 'Question',
+          'name': 'How do I prevent my screen from sleeping without changing computer settings?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Open NoSleep (https://nosleeppage.com/prevent-screen-sleep/) in any modern web browser and click "Keep Screen Awake". NoSleep requests a native W3C Screen Wake Lock from your operating system, keeping your monitor fully awake without modifying system timeout settings or installing software.',
+          },
+        },
+        {
+          '@type': 'Question',
+          'name': 'How does NoSleep prevent screen sleep on Windows 11 and macOS?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'NoSleep communicates directly with the OS power management subsystem via the standardized Screen Wake Lock API. As long as this browser tab remains active, Windows, macOS, ChromeOS, and Android will not dim the backlight, activate a screensaver, or lock the display.',
+          },
+        },
+        {
+          '@type': 'Question',
+          'name': 'Can I prevent screen sleep on a locked work laptop without admin privileges?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Yes. Because NoSleep is a client-side web application running inside your browser sandbox, it requires zero administrator rights, zero registry hacks, and zero third-party executable downloads. It is completely safe and IT-compliant.',
+          },
+        },
+        {
+          '@type': 'Question',
+          'name': 'Will preventing screen sleep drain my laptop battery?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Keeping the display backlight on consumes standard display power, but NoSleep uses lightweight Canvas rendering and in-memory Web Audio, consuming 95% less CPU and battery than streaming 10-hour looping YouTube black screen videos.',
+          },
+        },
+      ],
+    },
+    {
+      '@type': 'HowTo',
+      '@id': 'https://nosleeppage.com/prevent-screen-sleep/#howto',
+      'name': 'How to Prevent Screen Sleep Online in 3 Steps',
+      'description': 'A simple guide to stopping computer and tablet screen timeouts using a browser-based wake lock.',
+      'step': [
+        {
+          '@type': 'HowToStep',
+          'name': 'Open NoSleep in Your Browser',
+          'text': 'Navigate to https://nosleeppage.com/prevent-screen-sleep/ in Google Chrome, Microsoft Edge, Safari, or Firefox.',
+          'url': 'https://nosleeppage.com/prevent-screen-sleep/#step1',
+        },
+        {
+          '@type': 'HowToStep',
+          'name': 'Tap Keep Screen Awake',
+          'text': 'Click the primary "Keep Screen Awake" button in the center of the page. The indicator badge turns green.',
+          'url': 'https://nosleeppage.com/prevent-screen-sleep/#step2',
+        },
+        {
+          '@type': 'HowToStep',
+          'name': 'Leave the Tab Open',
+          'text': 'Keep this browser tab open while working, presenting, or compiling. Your display will remain illuminated indefinitely.',
+          'url': 'https://nosleeppage.com/prevent-screen-sleep/#step3',
+        },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Prevent Screen Sleep Online — Stop Display Timeout (Zero Installs)"
+  description="Prevent screen sleep and stop display timeouts online with zero downloads. 100% private, free web utility to keep monitors awake on Windows, Mac, iPad, and Android."
+  canonicalPath="/prevent-screen-sleep/"
+>
+  <JsonLd slot="head" schema={jsonLd} />
+
+  <!-- Ambient Application Viewport -->
+  <main class="ambient-app-container">
+    <Header locale="en" />
+    <AmbientCanvas />
+    <HeroWakeControl locale="en" />
+    <ControlsBar locale="en" />
+    <SoundMixerModal locale="en" />
+    <TimerModal locale="en" />
+  </main>
+
+  <!-- Educational & Search-Intent Content -->
+  <article class="content-container">
+    <h1>Prevent Screen Sleep & Display Lock Online</h1>
+    <p class="lead">
+      Need to prevent your screen from sleeping, dimming, or locking automatically? NoSleep is a zero-install,
+      privacy-first web tool that keeps your display awake continuously through standard browser APIs. No executable
+      files, no registry edits, and no administrative permissions required.
+    </p>
+
+    <!-- GEO / AI Overview Fact Block -->
+    <div class="geo-highlight-card glass-surface">
+      <div class="geo-badge">Direct Answer</div>
+      <p class="geo-fact">
+        <strong>How to prevent screen sleep without software:</strong> Navigate to NoSleep in your browser and toggle
+        <em>Keep Screen Awake</em>. Your browser activates the W3C Screen Wake Lock API, signaling to Windows, macOS,
+        or Android power managers to hold the display active. It requires zero installs, respects corporate IT policies,
+        and automatically restores normal sleep behavior when the tab is closed.
+      </p>
+    </div>
+
+    <section class="info-block">
+      <h2>Why Does Your Computer Screen Keep Sleeping?</h2>
+      <p>
+        Operating systems enforce aggressive display timeouts (often 2 to 5 minutes) by default to preserve battery
+        life and enforce enterprise security. While helpful in coffee shops, automatic screen locks disrupt productive
+        tasks:
+      </p>
+      <ul class="intent-list">
+        <li><strong>Presentations & Demos:</strong> Screen going black while explaining a slide during a team meeting.</li>
+        <li><strong>Long Compilations & Builds:</strong> Laptops entering standby during Docker builds or local test runs.</li>
+        <li><strong>Recipe & Sheet Music Reading:</strong> Forcing you to touch your screen with messy or occupied hands.</li>
+        <li><strong>Locked Corporate Devices:</strong> Company laptops where Group Policy (GPO) blocks changing sleep settings.</li>
+      </ul>
+    </section>
+
+    <section class="info-block">
+      <h2>Comparison: How NoSleep Beats Other Methods</h2>
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Admin Privileges</th>
+              <th>Data Usage</th>
+              <th>Battery / CPU Load</th>
+              <th>IT Compliance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>NoSleep Online</strong></td>
+              <td>Zero needed</td>
+              <td>0 MB (Offline PWA)</td>
+              <td>Minimal (Canvas 2D)</td>
+              <td>100% Safe (Browser Sandbox)</td>
+            </tr>
+            <tr>
+              <td>Native Apps (Caffeine, Amphetamine)</td>
+              <td>Often blocked by IT</td>
+              <td>Installer download</td>
+              <td>Low</td>
+              <td>May violate MDM / security policy</td>
+            </tr>
+            <tr>
+              <td>YouTube 10-Hr Black Screen Video</td>
+              <td>Not needed</td>
+              <td>500MB – 2GB stream</td>
+              <td>High (Continuous video decode)</td>
+              <td>Bandwidth waste & frequent ads</td>
+            </tr>
+            <tr>
+              <td>Changing OS Power Settings</td>
+              <td>Admin rights required</td>
+              <td>None</td>
+              <td>None</td>
+              <td>Leaves device insecure when unattended</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="info-block">
+      <h2>How to Prevent Screen Sleep by Operating System</h2>
+      <div class="os-grid">
+        <div class="os-card glass-surface">
+          <h3>Windows 11 & Windows 10</h3>
+          <p>
+            Open NoSleep in Google Chrome, Microsoft Edge, or Firefox. Click "Keep Screen Awake". Your screen will remain
+            illuminated without altering Windows Power & Battery timeout settings or running PowerShell scripts.
+          </p>
+        </div>
+        <div class="os-card glass-surface">
+          <h3>macOS (MacBook, Mac Studio, iMac)</h3>
+          <p>
+            Compatible with Safari 16.4+, Chrome, and Edge across Apple Silicon (M1/M2/M3/M4) and Intel Macs. Eliminates
+            the need for Terminal <code>caffeinate</code> commands or third-party menu bar utilities.
+          </p>
+        </div>
+        <div class="os-card glass-surface">
+          <h3>iPad, iPhone & Android</h3>
+          <p>
+            Keep mobile and tablet displays active while cooking, exercising, or monitoring dashboards. Prevents auto-lock
+            without needing to dig through Settings &rarr; Display & Brightness &rarr; Auto-Lock.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-block">
+      <h2>Frequently Asked Questions</h2>
+      <details class="faq-accordion glass-surface">
+        <summary>Does screen wake lock work if I switch to another window?</summary>
+        <p>
+          Per W3C specifications, the Screen Wake Lock API is active as long as the browser window is open and visible.
+          If minimized, the lock suspends to protect battery life, and automatically re-activates the instant you return to
+          the tab.
+        </p>
+      </details>
+      <details class="faq-accordion glass-surface">
+        <summary>Is NoSleep completely private and free?</summary>
+        <p>
+          Yes. NoSleep requires no sign-up, stores no personal data, sets no analytics cookies, and operates 100%
+          client-side in your local browser memory.
+        </p>
+      </details>
+    </section>
+  </article>
+
+  <Footer locale="en" />
+</BaseLayout>
+
+<style>
+  .content-container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-4) var(--space-16);
+    line-height: 1.7;
+    color: var(--color-body);
+  }
+
+  h1 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-4);
+    line-height: 1.2;
+  }
+
+  .lead {
+    font-size: 1.15rem;
+    color: var(--color-body);
+    margin-bottom: var(--space-8);
+  }
+
+  .geo-highlight-card {
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-primary);
+    margin-bottom: var(--space-8);
+    background: var(--color-surface-card);
+  }
+
+  .geo-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .geo-fact {
+    font-size: 0.95rem;
+    color: var(--color-ink);
+    margin: 0;
+  }
+
+  .info-block {
+    margin-bottom: var(--space-10);
+  }
+
+  h2 {
+    font-size: 1.45rem;
+    color: var(--color-ink);
+    margin-bottom: var(--space-3);
+    letter-spacing: -0.015em;
+  }
+
+  .intent-list {
+    margin: var(--space-4) 0 var(--space-6) var(--space-5);
+  }
+
+  .intent-list li {
+    margin-bottom: var(--space-2);
+  }
+
+  .comparison-table-wrapper {
+    overflow-x: auto;
+    margin: var(--space-4) 0;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-hairline);
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    text-align: left;
+    background: var(--color-surface-card);
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-hairline);
+  }
+
+  .comparison-table th {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  .os-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  .os-card {
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-hairline);
+  }
+
+  .os-card h3 {
+    font-size: 1.05rem;
+    color: var(--color-ink);
+    margin-bottom: var(--space-2);
+  }
+
+  .faq-accordion {
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-3);
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-hairline);
+  }
+
+  .faq-accordion summary {
+    font-weight: 600;
+    color: var(--color-ink);
+    cursor: pointer;
+  }
+
+  .faq-accordion p {
+    margin-top: var(--space-2);
+    font-size: 0.92rem;
+  }
+</style>

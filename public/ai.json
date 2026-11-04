@@ -9,6 +9,10 @@
   },
   "capabilities": [
     "Keep screen awake without software downloads",
+    "Prevent screen sleep and display timeouts",
+    "Keep computer awake for AI coding agents (Claude Code, Cursor, Devin)",
+    "Work laptop display awake without admin rights",
+    "Developer workstation wake lock for Docker builds and migrations",
     "Keep screen on (no screen off tool)",
     "Procedural ambient sound mixing (rain, ocean, brown noise, forest, lo-fi)",
     "Drift-free focus and sleep timers",

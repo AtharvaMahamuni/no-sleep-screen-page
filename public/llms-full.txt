@@ -31,3 +31,9 @@ NoSleep uses `navigator.wakeLock.request('screen')`.
 ### 5. Multi-Language Support (i18n)
 - 7 Fully Localized Static Languages: English (en), Spanish (es), German (de), French (fr), Portuguese (pt), Japanese (ja), Simplified Chinese (zh).
 - Reciprocal hreflang tags on all routes with x-default pointing to root.
+
+### 6. Specialized Workflows & Solution Routes
+- [Prevent Screen Sleep](https://nosleeppage.com/prevent-screen-sleep/): Zero-install utility to prevent display dimming, screensavers, and sleep mode on Windows 11, macOS, and mobile devices.
+- [AI Agents & Long Prompts](https://nosleeppage.com/for/ai-agents/): Prevents operating system sleep, App Nap, and WebSocket dropouts while running autonomous AI coding agents (Claude Code, Cursor Composer, Devin, Antigravity) and local LLMs (Ollama, LM Studio).
+- [Work Laptops & Zero Admin](https://nosleeppage.com/for/work-laptops/): 100% IT-compliant browser sandbox wake lock for enterprise laptops with locked screensaver and sleep timeout policies.
+- [Developer Workstations](https://nosleeppage.com/for/developers/): Keeps compilers, Docker builds, and database migrations running without native CLI tools.

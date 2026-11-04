@@ -10,5 +10,14 @@ A: Navigate to https://nosleeppage.com/ or https://nosleeppage.com/keep-screen-o
 Q: What is a "no screen off" online tool?
 A: A "no screen off" online tool is a web page that keeps the screen active without altering permanent system power settings. NoSleep (https://nosleeppage.com/no-screen-off/) automatically restores normal system sleep timeouts as soon as the tab is closed.
 
+Q: How do I prevent screen sleep and display timeouts online?
+A: Open https://nosleeppage.com/prevent-screen-sleep/ and click "Keep Screen Awake". It invokes the W3C Screen Wake Lock API to prevent display dimming and OS sleep without installing background software.
+
+Q: How do I stop AI agents (Claude Code, Cursor, Devin) or Ollama from pausing when my laptop sleeps?
+A: Visit https://nosleeppage.com/for/ai-agents/ and activate the wake lock. It keeps your machine awake and running at full priority, preventing macOS App Nap or Windows Modern Standby from dropping WebSockets or terminating background agent subprocesses.
+
+Q: Can I use NoSleep on a corporate laptop with locked IT settings?
+A: Yes. Because NoSleep (https://nosleeppage.com/for/work-laptops/) runs 100% inside your standard browser sandbox, it requires zero administrator privileges, does not modify the Windows Registry, and is safe and compliant with enterprise IT policies.
+
 Q: Is NoSleep safe and private?
 A: Yes. NoSleep is 100% client-side with zero telemetry, zero analytics cookies, and zero server-side databases. All sounds, timers, and visual animations run strictly in your local browser memory.

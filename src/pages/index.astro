@@ -82,6 +82,14 @@ const jsonLdSchema = {
         },
         {
           '@type': 'Question',
+          'name': 'How do I keep my computer awake while running AI agents like Claude Code, Cursor, or long terminal scripts?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'When an operating system display sleeps, macOS App Nap and Windows Modern Standby throttle background processes and drop WebSocket connections, causing autonomous coding agents (Claude Code, Cursor, Devin) or local LLMs (Ollama) to terminate. Leaving NoSleep open with Keep Screen Awake active prevents the OS from entering sleep states without needing CLI tools or host executables.',
+          },
+        },
+        {
+          '@type': 'Question',
           'name': 'Does keeping the screen awake in the browser drain battery?',
           'acceptedAnswer': {
             '@type': 'Answer',
