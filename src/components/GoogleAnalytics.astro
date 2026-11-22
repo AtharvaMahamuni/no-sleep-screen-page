@@ -1,35 +1,41 @@
 ---
 interface Props {
-  id?: string;
+  gaId?: string;
+  gtmId?: string;
 }
 
-const envId = import.meta.env.PUBLIC_GTM_ID || import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
-const gtmId = (Astro.props.id || envId || 'GTM-K56MBWRB').trim();
+const gaMeasurementId = (Astro.props.gaId || import.meta.env.PUBLIC_GA_MEASUREMENT_ID || 'G-XYJ8XQDZ3B').trim();
+const gtmContainerId = (Astro.props.gtmId || import.meta.env.PUBLIC_GTM_ID || 'GTM-K56MBWRB').trim();
 ---
 
-{gtmId && (
-  <>
-    <!-- DNS preconnect & prefetch for Google Tag Manager -->
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+<!-- DNS preconnect & prefetch for Google Analytics and Tag Manager -->
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+<link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
-    <!-- Google Tag Manager -->
-    <script is:inline define:vars={{ gtmId }}>
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer',gtmId);
-    </script>
-    <!-- End Google Tag Manager -->
+<!-- Google tag (gtag.js) for Google Analytics 4 (G-XYJ8XQDZ3B) -->
+<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+<script is:inline define:vars={{ gaMeasurementId, gtmContainerId }}>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = gtag;
 
-    <!-- Google tag (gtag.js) compatibility for Google Tag Assistant & GA4 -->
-    <script is:inline define:vars={{ gtmId }}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      window.gtag = gtag;
-      gtag('js', new Date());
-      gtag('config', gtmId);
-    </script>
-  </>
-)}
+  gtag('js', new Date());
+  gtag('config', gaMeasurementId, {
+    anonymize_ip: true,
+  });
+
+  if (gtmContainerId) {
+    gtag('config', gtmContainerId);
+  }
+</script>
+
+<!-- Google Tag Manager Container (GTM-K56MBWRB) -->
+<script is:inline define:vars={{ gtmContainerId }}>
+  if (gtmContainerId) {
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer',gtmContainerId);
+  }
+</script>
