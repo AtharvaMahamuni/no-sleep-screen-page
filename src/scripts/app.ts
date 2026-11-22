@@ -9,6 +9,7 @@ import { ParticleUniverseScene } from '../engines/visual/scenes/ParticleUniverse
 import { OrbitalAtomsScene } from '../engines/visual/scenes/OrbitalAtoms';
 import { AudioEngine } from '../engines/audio/AudioEngine';
 import { PreferencesEngine } from '../engines/preferences/PreferencesEngine';
+import { trackEvent } from '../engines/analytics';
 
 export class NoSleepApp {
   private wakeLock = new WakeLockManager();
@@ -110,6 +111,8 @@ export class NoSleepApp {
     });
 
     this.wakeLock.onStatusChange(status => {
+      trackEvent('wake_lock_status', { status });
+
       // 1. Update Header Pill
       if (headerBadge) headerBadge.setAttribute('data-status', status);
       if (headerBtn) {
@@ -336,6 +339,7 @@ export class NoSleepApp {
         pill.setAttribute('aria-checked', 'true');
 
         this.prefs.setActivePreset(presetId);
+        trackEvent('preset_selected', { preset_id: presetId });
         const preset = this.prefs.getActivePreset();
         this.applyPreset(preset);
 

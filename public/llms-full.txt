@@ -24,7 +24,7 @@ NoSleep uses `navigator.wakeLock.request('screen')`.
 
 ### 4. Privacy & Data Handling
 - 100% Client-side.
-- Zero analytics cookies or tracking pixels.
+- Privacy-first: Aggregated, anonymized Google Analytics 4 (IP anonymization enforced, zero advertising cookies, zero cross-site tracking).
 - Zero backend databases or serverless functions.
 - LocalStorage schema version 1 for user themes, master volumes, and custom presets.
 

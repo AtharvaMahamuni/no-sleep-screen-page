@@ -24,4 +24,11 @@ describe('PreferencesEngine', () => {
     expect(decoded?.masterVolume).toBe(samplePreset.masterVolume);
     expect(decoded?.sounds?.length).toBe(samplePreset.sounds.length);
   });
+
+  it('manages analytics opt-out preference state', () => {
+    const engine = new PreferencesEngine();
+    expect(engine.getPreferences().analyticsOptOut).toBe(false);
+    engine.setAnalyticsOptOut(true);
+    expect(engine.getPreferences().analyticsOptOut).toBe(true);
+  });
 });

@@ -2,6 +2,7 @@
 import type { SupportedLocale } from '../i18n/ui';
 import { LOCALES, DEFAULT_LOCALE } from '../i18n/ui';
 import { getLocalizedPath, hasMultilingualAlternates } from '../i18n/utils';
+import GoogleAnalytics from './GoogleAnalytics.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -54,6 +55,9 @@ const currentDir = LOCALES[locale]?.dir || 'ltr';
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Google Analytics 4 (Performance & Privacy Optimized) -->
+    <GoogleAnalytics />
 
     <!-- Multilingual Alternates -->
     {hasMultilingualAlternates(canonicalPath) && Object.keys(LOCALES).map((loc) => (

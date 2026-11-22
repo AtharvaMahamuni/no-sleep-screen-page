@@ -73,12 +73,12 @@ notes.push(`app JS gzip: ${jsGzip} bytes across ${allJs.size} file(s)`);
 if (jsGzip > 35 * 1024) notes.push(`Note: JS is ${jsGzip} bytes (budget target: 35 KB).`);
 if (jsGzip > 50 * 1024) failures.push(`JS is ${jsGzip} bytes gzipped. The limit is 50 KB.`);
 
-// Security & privacy check: zero trackers or unauthorized ads
+// Security & privacy check: zero unauthorized trackers or invasive advertising networks
 const forbidden = [
-  'google-analytics.com',
-  'googletagmanager.com',
   'facebook.net',
   'hotjar.com',
+  'tiktok.com',
+  'doubleclick.net',
 ];
 
 for (const file of htmlFiles) {

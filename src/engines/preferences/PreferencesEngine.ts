@@ -116,6 +116,11 @@ export class PreferencesEngine {
     this.save();
   }
 
+  public setAnalyticsOptOut(enabled: boolean): void {
+    this.prefs.analyticsOptOut = enabled;
+    this.save();
+  }
+
   public saveCustomPreset(preset: AmbientPreset): void {
     const existingIndex = this.prefs.customPresets.findIndex(p => p.id === preset.id);
     if (existingIndex >= 0) {

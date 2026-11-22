@@ -1,0 +1,22 @@
+---
+interface Props {
+  id?: string;
+}
+
+const envId = import.meta.env.PUBLIC_GTM_ID || import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const gtmId = (Astro.props.id || envId || 'GTM-K56MBWRB').trim();
+---
+
+{gtmId && (
+  <>
+    <!-- Google Tag Manager / Google Analytics -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <script is:inline async src={`https://www.googletagmanager.com/gtm.js?id=${gtmId}`}></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+  </>
+)}
