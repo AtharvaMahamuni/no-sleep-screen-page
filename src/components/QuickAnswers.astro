@@ -12,15 +12,15 @@ const t = useTranslations(locale);
 const faqs = [
   {
     q: 'How does NoSleep prevent my screen from turning off or locking?',
-    a: 'NoSleep uses the W3C Screen Wake Lock API supported natively in modern web browsers. When enabled, it informs your operating system that the active browser tab requires the display to remain active, preventing lock screens, dimming, and sleep without needing administrative privileges or native software downloads.'
+    a: 'NoSleep uses the W3C Screen Wake Lock API supported natively in modern web browsers. When enabled, it informs your operating system that the active browser tab requires the display to remain active, preventing lock screens, dimming, and sleep without needing administrative privileges or native software downloads. Learn more in our comprehensive guide to <a href="/prevent-screen-sleep/">prevent screen sleep</a> across all devices.'
   },
   {
     q: 'Can I keep my screen on for a corporate work laptop without administrator rights?',
-    a: 'Yes. Enterprise IT departments often lock down system timeout settings and block executable files like Caffeine or Amphetamine. NoSleep runs 100% inside your standard browser (Chrome, Edge, Safari, Firefox), enabling a safe "no screen off" session with zero admin privileges required.'
+    a: 'Yes. Enterprise IT departments often lock down system timeout settings and block executable files like Caffeine or Amphetamine. NoSleep runs 100% inside your standard browser (Chrome, Edge, Safari, Firefox), enabling a safe "no screen off" session with zero admin privileges required. See our dedicated guide for <a href="/for/work-laptops/">corporate work laptops</a>.'
   },
   {
     q: 'What is the difference between a "no screen off" browser tool and changing OS settings?',
-    a: 'Changing system display timeouts permanently leaves your computer awake even after you leave your desk, creating security vulnerabilities and battery drain. NoSleep only keeps your display active while this browser tab remains frontmost, automatically restoring your normal system sleep timeout when closed.'
+    a: 'Changing system display timeouts permanently leaves your computer awake even after you leave your desk, creating security vulnerabilities and battery drain. NoSleep only keeps your display active while this browser tab remains frontmost, automatically restoring your normal system sleep timeout when closed. You can safely <a href="/keep-screen-on/">keep your screen on</a> or use our <a href="/no-screen-off/">no screen off tool</a> on demand.'
   },
   {
     q: 'Does screen wake lock work when I minimize or switch to another application?',
@@ -36,7 +36,7 @@ const faqs = [
   },
   {
     q: 'How do I keep my computer awake while running AI agents like Claude Code, Cursor, or long terminal scripts?',
-    a: 'When your screen sleeps, macOS and Windows suspend background threads and drop WebSocket connections, causing autonomous coding agents (Claude Code, Cursor, Devin) or local LLMs (Ollama) to terminate. Leaving NoSleep active in a browser tab prevents the OS from entering sleep or App Nap, ensuring your background tasks complete without installing CLI tools.'
+    a: 'When your screen sleeps, macOS and Windows suspend background threads and drop WebSocket connections, causing autonomous coding agents (Claude Code, Cursor, Devin) or local LLMs (Ollama) to terminate. Leaving NoSleep active in a browser tab prevents the OS from entering sleep or App Nap. Explore our specialized solutions for <a href="/for/ai-agents/">autonomous AI agents</a> and <a href="/for/developers/">developer workstations</a>.'
   },
   {
     q: 'Can I use NoSleep offline?',
@@ -60,7 +60,7 @@ const faqs = [
             <span class="faq-icon">+</span>
           </summary>
           <div class="faq-answer">
-            <p>{item.a}</p>
+            <p set:html={item.a}></p>
           </div>
         </details>
       ))}
@@ -145,5 +145,18 @@ const faqs = [
     color: var(--color-body);
     font-size: 0.92rem;
     line-height: 1.6;
+  }
+
+  .faq-answer :global(a) {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+    font-weight: 600;
+    transition: color var(--duration-fast) var(--ease-out-quint);
+  }
+
+  .faq-answer :global(a:hover) {
+    color: var(--color-primary);
   }
 </style>
