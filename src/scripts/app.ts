@@ -231,33 +231,111 @@ export class NoSleepApp {
 
   private bindTimerUI(): void {
     const timerText = document.getElementById('timer-display');
+    const timerTag = document.getElementById('timer-mode-tag');
     const startPauseBtn = document.getElementById('timer-start-pause-btn');
     const resetBtn = document.getElementById('timer-reset-btn');
     const pomodoroBtn = document.getElementById('timer-mode-pomodoro');
     const breakBtn = document.getElementById('timer-mode-break');
+    const longBreakBtn = document.getElementById('timer-mode-longbreak');
+    const profile25Btn = document.getElementById('profile-25-5');
+    const profile50Btn = document.getElementById('profile-50-10');
+    const pomodoroDurationText = document.getElementById('pomodoro-duration-text');
+    const breakDurationText = document.getElementById('break-duration-text');
     const sleepPills = document.querySelectorAll('.sleep-pill');
+    const cyclePips = document.querySelectorAll('.cycle-pip');
 
     this.timer.onTick(state => {
       if (timerText) timerText.textContent = state.formattedTime;
       if (startPauseBtn) {
         startPauseBtn.textContent = state.isRunning ? 'Pause' : 'Start';
       }
+
+      if (timerTag) {
+        if (state.mode === 'pomodoro') {
+          timerTag.textContent = `FOCUS • C${state.cycle}`;
+        } else if (state.mode === 'shortBreak') {
+          timerTag.textContent = 'BREATHE ○';
+        } else if (state.mode === 'longBreak') {
+          timerTag.textContent = 'REST ○';
+        } else if (state.mode === 'sleep') {
+          timerTag.textContent = 'SLEEP';
+        } else {
+          timerTag.textContent = 'TIMER';
+        }
+      }
+
+      // Update cycle progress pips
+      cyclePips.forEach((pip, idx) => {
+        const pipCycle = idx + 1;
+        if (pipCycle <= state.cycle) {
+          pip.classList.add('active');
+        } else {
+          pip.classList.remove('active');
+        }
+      });
     });
 
     this.timer.onComplete(mode => {
-      if (mode === 'sleep') {
+      if (mode === 'pomodoro') {
+        // Sprint complete: Auto-transition visual canvas to calming Breathing Orb
+        if (this.sceneManager) {
+          this.sceneManager.switchScene('breathing-orb');
+        }
+        const next = this.timer.advancePhase();
+        this.timer.start();
+        trackEvent('pomodoro_sprint_complete', { nextMode: next.nextMode, cycle: next.cycle });
+      } else if (mode === 'shortBreak' || mode === 'longBreak') {
+        // Break complete: Restore active preset visual scene and advance to next focus sprint
+        const activePreset = this.prefs.getActivePreset();
+        if (this.sceneManager && activePreset?.sceneId) {
+          this.sceneManager.switchScene(activePreset.sceneId);
+        }
+        const next = this.timer.advancePhase();
+        trackEvent('pomodoro_break_complete', { mode, nextCycle: next.cycle });
+      } else if (mode === 'sleep') {
         this.audio.pause();
         this.wakeLock.release();
+        trackEvent('sleep_timer_complete');
       }
     });
 
-    startPauseBtn?.addEventListener('click', () => this.timer.toggle());
+    startPauseBtn?.addEventListener('click', () => {
+      const state = this.timer.getState();
+      if (!state.isRunning && state.mode === 'pomodoro') {
+        // Automatically ensure screen stays awake during focus sprints
+        this.wakeLock.acquire();
+        trackEvent('pomodoro_start', { duration: state.totalSeconds / 60, cycle: state.cycle });
+      }
+      this.timer.toggle();
+    });
+
     resetBtn?.addEventListener('click', () => this.timer.reset());
+
+    // Rhythm Profile: 25/5 Classic
+    profile25Btn?.addEventListener('click', () => {
+      profile25Btn.classList.add('active');
+      profile50Btn?.classList.remove('active');
+      this.timer.setSprintProfile(25, 5);
+      if (pomodoroDurationText) pomodoroDurationText.textContent = '25 min';
+      if (breakDurationText) breakDurationText.textContent = '5 min';
+      trackEvent('pomodoro_profile_change', { sprint: 25, break: 5 });
+    });
+
+    // Rhythm Profile: 50/10 Deep Flow
+    profile50Btn?.addEventListener('click', () => {
+      profile50Btn.classList.add('active');
+      profile25Btn?.classList.remove('active');
+      this.timer.setSprintProfile(50, 10);
+      if (pomodoroDurationText) pomodoroDurationText.textContent = '50 min';
+      if (breakDurationText) breakDurationText.textContent = '10 min';
+      trackEvent('pomodoro_profile_change', { sprint: 50, break: 10 });
+    });
 
     pomodoroBtn?.addEventListener('click', () => {
       this.timer.setMode('pomodoro');
       pomodoroBtn.classList.add('active');
       breakBtn?.classList.remove('active');
+      longBreakBtn?.classList.remove('active');
       sleepPills.forEach(p => p.classList.remove('active'));
     });
 
@@ -265,7 +343,19 @@ export class NoSleepApp {
       this.timer.setMode('shortBreak');
       breakBtn.classList.add('active');
       pomodoroBtn?.classList.remove('active');
+      longBreakBtn?.classList.remove('active');
       sleepPills.forEach(p => p.classList.remove('active'));
+      // Show Breathing Orb when explicitly selecting break
+      if (this.sceneManager) this.sceneManager.switchScene('breathing-orb');
+    });
+
+    longBreakBtn?.addEventListener('click', () => {
+      this.timer.setMode('longBreak');
+      longBreakBtn.classList.add('active');
+      pomodoroBtn?.classList.remove('active');
+      breakBtn?.classList.remove('active');
+      sleepPills.forEach(p => p.classList.remove('active'));
+      if (this.sceneManager) this.sceneManager.switchScene('breathing-orb');
     });
 
     sleepPills.forEach(pill => {
@@ -276,6 +366,7 @@ export class NoSleepApp {
         pill.classList.add('active');
         pomodoroBtn?.classList.remove('active');
         breakBtn?.classList.remove('active');
+        longBreakBtn?.classList.remove('active');
       });
     });
   }

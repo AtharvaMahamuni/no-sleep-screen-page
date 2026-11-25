@@ -1,4 +1,4 @@
-export type TimerMode = 'pomodoro' | 'shortBreak' | 'sleep' | 'custom';
+export type TimerMode = 'pomodoro' | 'shortBreak' | 'longBreak' | 'sleep' | 'custom';
 
 export interface TimerState {
   remainingSeconds: number;
@@ -6,6 +6,9 @@ export interface TimerState {
   isRunning: boolean;
   mode: TimerMode;
   formattedTime: string;
+  cycle: number;
+  sprintDuration: number;
+  breakDuration: number;
 }
 
 export type TimerTickCallback = (state: TimerState) => void;
@@ -17,6 +20,11 @@ export class TimerManager {
   private isRunning: boolean = false;
   private mode: TimerMode = 'pomodoro';
 
+  private cycle: number = 1;
+  private sprintDuration: number = 25;
+  private breakDuration: number = 5;
+  private longBreakDuration: number = 15;
+
   private intervalId: any = null;
   private targetTimestamp: number = 0;
 
@@ -27,13 +35,51 @@ export class TimerManager {
 
   public setMode(mode: TimerMode, customMinutes?: number): void {
     this.mode = mode;
-    let mins = 25;
-    if (mode === 'pomodoro') mins = 25;
-    else if (mode === 'shortBreak') mins = 5;
+    let mins = this.sprintDuration;
+    if (mode === 'pomodoro') mins = this.sprintDuration;
+    else if (mode === 'shortBreak') mins = this.breakDuration;
+    else if (mode === 'longBreak') mins = this.longBreakDuration;
     else if (mode === 'sleep') mins = customMinutes ?? 30;
     else if (mode === 'custom') mins = customMinutes ?? 15;
 
     this.setTime(mins * 60);
+  }
+
+  public setSprintProfile(sprintMins: 25 | 50, breakMins: 5 | 10): void {
+    this.sprintDuration = sprintMins;
+    this.breakDuration = breakMins;
+    if (this.mode === 'pomodoro') {
+      this.setTime(sprintMins * 60);
+    } else if (this.mode === 'shortBreak') {
+      this.setTime(breakMins * 60);
+    }
+  }
+
+  public setCycle(cycle: number): void {
+    this.cycle = Math.max(1, Math.min(4, cycle));
+    this.notifyTick();
+  }
+
+  public getCycle(): number {
+    return this.cycle;
+  }
+
+  public advancePhase(): { nextMode: TimerMode; cycle: number } {
+    if (this.mode === 'pomodoro') {
+      if (this.cycle >= 4) {
+        this.setMode('longBreak');
+      } else {
+        this.setMode('shortBreak');
+      }
+    } else {
+      if (this.mode === 'longBreak') {
+        this.cycle = 1;
+      } else {
+        this.cycle = (this.cycle % 4) + 1;
+      }
+      this.setMode('pomodoro');
+    }
+    return { nextMode: this.mode, cycle: this.cycle };
   }
 
   public setTime(seconds: number): void {
@@ -86,6 +132,9 @@ export class TimerManager {
       isRunning: this.isRunning,
       mode: this.mode,
       formattedTime: this.formatTime(this.remainingSeconds),
+      cycle: this.cycle,
+      sprintDuration: this.sprintDuration,
+      breakDuration: this.breakDuration,
     };
   }
 

@@ -82,8 +82,15 @@ const t = useTranslations(locale);
     <!-- Timer Section -->
     <div class="dock-cluster timer-cluster" role="group" aria-label="Timer">
       <div class="timer-display-group">
-        <span class="timer-tag">{t('controls.timerLabel')}</span>
+        <span class="timer-tag" id="timer-mode-tag">{t('controls.timerLabel')}</span>
         <span id="timer-display" class="timer-digits mono">25:00</span>
+        <!-- Minimalist Pomodoro Cycle Pips -->
+        <div class="timer-cycle-pips" id="timer-cycle-pips" role="group" aria-label="Pomodoro Cycle Progress" title="Sprint 1 of 4">
+          <span class="cycle-pip active" data-cycle="1"></span>
+          <span class="cycle-pip" data-cycle="2"></span>
+          <span class="cycle-pip" data-cycle="3"></span>
+          <span class="cycle-pip" data-cycle="4"></span>
+        </div>
       </div>
 
       <div class="timer-actions">
@@ -324,6 +331,26 @@ const t = useTranslations(locale);
     font-weight: 600;
     color: var(--color-ink);
     line-height: 1.2;
+  }
+
+  .timer-cycle-pips {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+  }
+
+  .cycle-pip {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-hairline-strong);
+    transition: all var(--duration-fast) var(--ease-out-quint);
+  }
+
+  .cycle-pip.active {
+    background: var(--color-primary);
+    box-shadow: 0 0 6px var(--color-primary-glow);
   }
 
   .timer-actions {

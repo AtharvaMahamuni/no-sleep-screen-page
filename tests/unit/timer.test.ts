@@ -45,4 +45,29 @@ describe('TimerManager', () => {
     timer.reset();
     expect(timer.getState().formattedTime).toBe('02:00');
   });
+
+  it('manages sprint profiles and cycle advancement', () => {
+    // 50/10 developer sprint profile
+    timer.setSprintProfile(50, 10);
+    expect(timer.getState().formattedTime).toBe('50:00');
+    expect(timer.getState().sprintDuration).toBe(50);
+    expect(timer.getState().breakDuration).toBe(10);
+
+    // Phase advancement: Pomodoro -> Break
+    const phase1 = timer.advancePhase();
+    expect(phase1.nextMode).toBe('shortBreak');
+    expect(timer.getState().formattedTime).toBe('10:00');
+
+    // Phase advancement: Break -> Pomodoro Cycle 2
+    const phase2 = timer.advancePhase();
+    expect(phase2.nextMode).toBe('pomodoro');
+    expect(phase2.cycle).toBe(2);
+    expect(timer.getState().formattedTime).toBe('50:00');
+
+    // Advance to cycle 4 and complete -> should trigger long break
+    timer.setCycle(4);
+    const phaseLong = timer.advancePhase();
+    expect(phaseLong.nextMode).toBe('longBreak');
+    expect(timer.getState().formattedTime).toBe('15:00');
+  });
 });
